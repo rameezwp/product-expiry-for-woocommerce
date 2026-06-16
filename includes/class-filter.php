@@ -37,6 +37,12 @@ class Filter_Admin {
             <option value="">
                 <?php _e( 'Filter by Expiry', 'product-expiry-for-woocommerce' ); ?>
             </option>
+            <option value="within_7_days" <?php selected( $selected, 'within_7_days' ); ?>>
+                <?php _e( 'Expiring within 7 Days', 'product-expiry-for-woocommerce' ); ?>
+            </option>
+            <option value="within_30_days" <?php selected( $selected, 'within_30_days' ); ?>>
+                <?php _e( 'Expiring within 30 Days', 'product-expiry-for-woocommerce' ); ?>
+            </option>
             <option value="this_month" <?php selected( $selected, 'this_month' ); ?>>
                 <?php _e( 'Expiring this Month', 'product-expiry-for-woocommerce' ); ?>
             </option>
@@ -81,6 +87,16 @@ class Filter_Admin {
 
         switch ( $period ) {
 
+            case 'within_7_days':
+                $start = $today;
+                $end   = date( 'Y-m-d', strtotime( '+7 days', strtotime( $today ) ) );
+                break;
+
+            case 'within_30_days':
+                $start = $today;
+                $end   = date( 'Y-m-d', strtotime( '+30 days', strtotime( $today ) ) );
+                break;
+
             case 'this_month':
                 $start = $today;
                 $end   = date( 'Y-m-t', strtotime( $today ) );
@@ -122,7 +138,7 @@ class Filter_Admin {
                 WHERE pm.meta_key = 'woo_expiry_date'
                 AND pm.meta_value <= %s
                 AND p.post_type = 'product'
-                AND p.post_status = 'publish'
+                AND p.post_status IN ( 'publish', 'draft' )
             ", $end ) );
 
         } else {
@@ -150,7 +166,7 @@ class Filter_Admin {
                 WHERE pm.meta_key = 'woo_expiry_date'
                 AND pm.meta_value <= %s
                 AND p.post_type = 'product_variation'
-                AND p.post_status = 'publish'
+                AND p.post_status IN ( 'publish', 'draft' )
             ", $end ) );
 
         } else {
