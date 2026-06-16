@@ -20,6 +20,58 @@
 	?>	
     <h1><?php _e( 'Woo Product Expiry Settings', 'product-expiry-for-woocommerce' ); ?></h1>
 
+    <?php if ( ! defined( 'WOOPE_PRO_VERSION' ) ) : ?>
+    <div class="woope-card woope-pro-promo">
+
+        <h2 style="display:flex;align-items:center;gap:8px;border:none;padding:0;">
+            ✨ <?php _e( 'New in Product Expiry Pro 1.2', 'product-expiry-for-woocommerce' ); ?>
+            <span class="woope-pro-badge"><?php _e( 'PRO', 'product-expiry-for-woocommerce' ); ?></span>
+        </h2>
+
+        <div class="woope-pro-promo-grid">
+
+            <!-- Countdown Timer -->
+            <div class="woope-pro-promo-feature">
+                <h3>⏱ <?php _e( 'Countdown Timer', 'product-expiry-for-woocommerce' ); ?></h3>
+                <p><?php _e( 'Live day/hour/min/sec countdown on product pages. Three styles (blocks, badge, minimal), urgency colouring that shifts green → amber → red as expiry approaches, works on variable products.', 'product-expiry-for-woocommerce' ); ?></p>
+
+                <div class="woope-promo-cd" data-deadline="<?php echo esc_attr( time() + ( 2 * DAY_IN_SECONDS ) + ( 4 * HOUR_IN_SECONDS ) + ( 30 * MINUTE_IN_SECONDS ) ); ?>">
+                    <span class="woope-promo-cd-label"><?php _e( 'Expires in:', 'product-expiry-for-woocommerce' ); ?></span>
+                    <span class="woope-promo-cd-block" data-unit="d"><b>02</b><i>days</i></span>
+                    <span class="woope-promo-cd-block" data-unit="h"><b>04</b><i>hrs</i></span>
+                    <span class="woope-promo-cd-block" data-unit="m"><b>30</b><i>min</i></span>
+                    <span class="woope-promo-cd-block" data-unit="s"><b>00</b><i>sec</i></span>
+                </div>
+            </div>
+
+            <!-- CSV Tools -->
+            <div class="woope-pro-promo-feature">
+                <h3>📊 <?php _e( 'CSV Bulk Tools', 'product-expiry-for-woocommerce' ); ?></h3>
+                <p><?php _e( 'Export every product and variation with expiry data to CSV. Edit in Excel. Re-import to bulk-update dates, times, notes and on-expiry actions — no SQL, no per-product clicks.', 'product-expiry-for-woocommerce' ); ?></p>
+
+                <div class="woope-promo-csv">
+                    <code>product_id,sku,expiry_date,expiry_time,expiry_action</code>
+                    <code>42,MILK-001,2026-12-31,23:59,out</code>
+                    <code>43,BREAD-002,2026-11-15,18:00,draft</code>
+                </div>
+            </div>
+
+        </div>
+
+        <p style="margin:16px 0 0;">
+            <a href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=v1.2-launch"
+               target="_blank" rel="noopener"
+               class="button button-primary">
+                <?php _e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' ); ?> →
+            </a>
+            <a class="woope-dismiss" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'woope_dismiss_promo', '1' ), 'woope_dismiss_promo' ) ); ?>"
+               style="margin-left:12px;color:#666;text-decoration:none;">
+                <?php _e( 'Dismiss', 'product-expiry-for-woocommerce' ); ?>
+            </a>
+        </p>
+    </div>
+    <?php endif; ?>
+
     <form action="#" class="woope-form">
 
         <input type="hidden" name="action" value="woope_save_admin_settings">

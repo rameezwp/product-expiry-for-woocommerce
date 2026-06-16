@@ -36,3 +36,48 @@
     border-radius: 3px;
     margin-left: 8px;
 }
+
+/* ---- Pro promo card ---- */
+.woope-pro-promo {
+    border-left: 4px solid #6f42c1;
+    background: linear-gradient(180deg, #faf7ff 0%, #fff 60%);
+}
+.woope-pro-promo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+}
+@media (max-width: 782px) { .woope-pro-promo-grid { grid-template-columns: 1fr; } }
+
+.woope-pro-promo-feature h3 { margin: 0 0 6px; font-size: 14px; }
+.woope-pro-promo-feature p  { margin: 0 0 12px; color: #555; }
+
+.woope-promo-cd {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 14px; background: #fff;
+    border: 1px solid #e0e0e0; border-radius: 6px;
+}
+.woope-promo-cd-label { font-weight: 600; margin-right: 4px; }
+.woope-promo-cd-block {
+    display: inline-flex; flex-direction: column; align-items: center;
+    min-width: 38px; padding: 4px 8px;
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;
+    line-height: 1.2;
+}
+.woope-promo-cd-block b { font-weight: 700; font-size: 16px; }
+.woope-promo-cd-block i {
+    font-size: 9px; text-transform: uppercase;
+    color: #888; font-style: normal; letter-spacing: 0.04em;
+}
+
+.woope-promo-csv {
+    background: #1e1e1e; color: #a8e4a8;
+    padding: 10px 12px; border-radius: 4px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12px; line-height: 1.7;
+}
+.woope-promo-csv code {
+    display: block;
+    color: inherit; background: transparent; padding: 0;
+}

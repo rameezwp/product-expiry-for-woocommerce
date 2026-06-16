@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Woo Product Expiry\n"
-"POT-Creation-Date: 2022-04-17 10:24+0500\n"
+"POT-Creation-Date: 2026-04-22 10:47+0500\n"
 "PO-Revision-Date: 2021-06-11 10:09+0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,76 +21,377 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: menu/status.php:26 menu/status.php:50
-msgid "Product Name"
+#: admin/views/settings.php:10
+msgid "Expiry Date: {expiry_date}"
 msgstr ""
 
-#: menu/status.php:27
-msgid "Expired on"
+#: admin/views/settings.php:21
+msgid "Woo Product Expiry Settings"
 msgstr ""
 
-#: menu/status.php:28 menu/status.php:52
-#: product-expiry-for-woocommerce.php:144
-msgid "Action"
+#: admin/views/settings.php:27
+msgid "New in Product Expiry Pro 1.2"
 msgstr ""
 
-#: menu/status.php:51
-msgid "Expiring In"
+#: admin/views/settings.php:28
+msgid "PRO"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:55 product-expiry-for-woocommerce.php:83
-msgid "Exp Date"
+#: admin/views/settings.php:35
+msgid "Countdown Timer"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:66
-msgid "No Date Set"
+#: admin/views/settings.php:36
+msgid ""
+"Live day/hour/min/sec countdown on product pages. Three styles (blocks, "
+"badge, minimal), urgency colouring that shifts green → amber → red as "
+"expiry approaches, works on variable products."
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:117
-msgid "Product Expiry"
+#: admin/views/settings.php:39
+msgid "Expires in:"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:135
-msgid "Expiry Date"
+#: admin/views/settings.php:49
+msgid "CSV Bulk Tools"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:137
-#: product-expiry-for-woocommerce.php:138
-msgid "Provide the date of expiry in YYYY-MM-DD format"
+#: admin/views/settings.php:50
+msgid ""
+"Export every product and variation with expiry data to CSV. Edit in Excel. "
+"Re-import to bulk-update dates, times, notes and on-expiry actions — no "
+"SQL, no per-product clicks."
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:146
-msgid "Nothing"
+#: admin/views/settings.php:65
+msgid "Upgrade to Pro"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:147
-msgid "Make it Draft"
+#: admin/views/settings.php:69
+msgid "Dismiss"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:149
-#: product-expiry-for-woocommerce.php:150
-msgid "What to do when this product expires?"
+#: admin/views/settings.php:82
+msgid "Display Settings"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:156
-msgid "Display"
+#: admin/views/settings.php:85
+msgid "Display on Frontend"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:158
-msgid "Disable"
-msgstr ""
-
-#: product-expiry-for-woocommerce.php:159
+#: admin/views/settings.php:88 admin/views/settings.php:190
+#: admin/views/settings.php:203 admin/views/settings.php:232
 msgid "Enable"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:161
-#: product-expiry-for-woocommerce.php:162
-msgid "Enable/Disable on the single product page"
+#: admin/views/settings.php:89 admin/views/settings.php:191
+#: admin/views/settings.php:204 admin/views/settings.php:235
+msgid "Disable"
 msgstr ""
 
-#: product-expiry-for-woocommerce.php:204
-msgid "Expiry Date: "
+#: admin/views/settings.php:93
+msgid "Display the expiry date on single product or shop pages"
+msgstr ""
+
+#: admin/views/settings.php:98
+msgid "Expiry Text Markup"
+msgstr ""
+
+#: admin/views/settings.php:103
+msgid "Provide text to show on frontend. Use {expiry_date} for expiry date"
+msgstr ""
+
+#: admin/views/settings.php:108
+msgid "Position on single product page"
+msgstr ""
+
+#: admin/views/settings.php:121 admin/views/settings.php:152
+msgid "Custom Hook Name..."
+msgstr ""
+
+#: admin/views/settings.php:132
+msgid "Choose where the expiry date appears on the main product page"
+msgstr ""
+
+#: admin/views/settings.php:138
+msgid "Position on shop archive page"
+msgstr ""
+
+#: admin/views/settings.php:163
+msgid ""
+"Choose where the expiry date appears on your shop's main listing and "
+"category pages."
+msgstr ""
+
+#: admin/views/settings.php:169
+msgid "Date Format"
+msgstr ""
+
+#: admin/views/settings.php:177
+#, php-format
+msgid ""
+"Enter how the date should appear (e.g., %1$s). Leave blank to use your "
+"WordPress default. <a href=\"%2$s\" target=\"_blank\">View formatting "
+"guide</a>."
+msgstr ""
+
+#: admin/views/settings.php:187
+msgid "Display in Emails"
+msgstr ""
+
+#: admin/views/settings.php:195
+msgid "Display the expiry date in order details email."
+msgstr ""
+
+#: admin/views/settings.php:200
+msgid "Display in Order Details"
+msgstr ""
+
+#: admin/views/settings.php:208
+msgid "Display the expiry date in order details admin and front."
+msgstr ""
+
+#: admin/views/settings.php:216
+msgid "Notification Settings"
+msgstr ""
+
+#: admin/views/settings.php:219
+msgid "Notification Emails"
+msgstr ""
+
+#: admin/views/settings.php:224
+msgid "Provide comma separated email addresses for expiry notification."
+msgstr ""
+
+#: admin/views/settings.php:228
+msgid "Send Email When Expired"
+msgstr ""
+
+#: admin/views/settings.php:240
+msgid "Send notification email when product expires."
+msgstr ""
+
+#: admin/views/settings.php:244
+msgid "Email Subject"
+msgstr ""
+
+#: admin/views/settings.php:252
+msgid "Available placeholders: {product_name}, {expiry_date}, {product_url}"
+msgstr ""
+
+#: admin/views/settings.php:257
+msgid "Email Body Template"
+msgstr ""
+
+#: admin/views/settings.php:264
+msgid "Customize email message sent for expiry notification."
+msgstr ""
+
+#: admin/views/settings.php:268
+msgid "Reminder Before Expiry (Days)"
+msgstr ""
+
+#: admin/views/settings.php:287
+#, php-format
+msgid ""
+"Send reminder email X days before expiry. Available in <strong>Pro version</"
+"strong>. <a href=\"%s\" target=\"_blank\">Learn more</a>"
+msgstr ""
+
+#: admin/views/settings.php:291
+msgid "Send reminder email before days product expires."
+msgstr ""
+
+#: admin/views/settings.php:301
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-admin.php:45
+msgid "Product Expiry Settings"
+msgstr ""
+
+#: includes/class-admin.php:46
+msgid "Expiry Settings"
+msgstr ""
+
+#: includes/class-admin.php:56
+msgid "Inside Summary (Default)"
+msgstr ""
+
+#: includes/class-admin.php:57
+msgid "Before Summary (Above Image)"
+msgstr ""
+
+#: includes/class-admin.php:58
+msgid "After Summary (Below Tabs)"
+msgstr ""
+
+#: includes/class-admin.php:59
+msgid "Product Meta Start"
+msgstr ""
+
+#: includes/class-admin.php:60
+msgid "Product Meta End"
+msgstr ""
+
+#: includes/class-admin.php:61
+msgid "Before Add to Cart Form"
+msgstr ""
+
+#: includes/class-admin.php:62
+msgid "After Add to Cart Form"
+msgstr ""
+
+#: includes/class-admin.php:66
+msgid "After Title (Default)"
+msgstr ""
+
+#: includes/class-admin.php:67
+msgid "Before Title"
+msgstr ""
+
+#: includes/class-admin.php:68
+msgid "After Product Link"
+msgstr ""
+
+#: includes/class-admin.php:69
+msgid "Inside Title Hook"
+msgstr ""
+
+#: includes/class-admin.php:89
+msgid "Security check failed."
+msgstr ""
+
+#: includes/class-admin.php:126
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: includes/class-admin.php:132
+msgid "No changes detected, but settings are up to date."
+msgstr ""
+
+#: includes/class-admin.php:134
+msgid "Failed to save settings. Please try again."
+msgstr ""
+
+#: includes/class-admin.php:211
+msgid "Settings"
+msgstr ""
+
+#: includes/class-columns.php:58
+msgid "Exp"
+msgstr ""
+
+#: includes/class-columns.php:101
+msgid "No Date Set"
+msgstr ""
+
+#: includes/class-columns.php:176
+msgid "Exp Date"
+msgstr ""
+
+#: includes/class-columns.php:188
+msgid "Exp Note"
+msgstr ""
+
+#: includes/class-columns.php:199
+msgid "Exp Action"
+msgstr ""
+
+#: includes/class-columns.php:204 includes/class-product-meta.php:108
+#: includes/class-product-meta.php:187
+msgid "Nothing"
+msgstr ""
+
+#: includes/class-columns.php:207 includes/class-product-meta.php:109
+#: includes/class-product-meta.php:188
+msgid "Make it Draft"
+msgstr ""
+
+#: includes/class-columns.php:210 includes/class-product-meta.php:110
+#: includes/class-product-meta.php:189
+msgid "Out of stock"
+msgstr ""
+
+#: includes/class-filter.php:38
+msgid "Filter by Expiry"
+msgstr ""
+
+#: includes/class-filter.php:41
+msgid "Expiring this Month"
+msgstr ""
+
+#: includes/class-filter.php:44
+msgid "Expiring next Month"
+msgstr ""
+
+#: includes/class-filter.php:47
+msgid "Expiring within 3 Months"
+msgstr ""
+
+#: includes/class-filter.php:50
+msgid "Expiring within 6 Months"
+msgstr ""
+
+#: includes/class-filter.php:53
+msgid "Already Expired"
+msgstr ""
+
+#: includes/class-product-meta.php:46
+msgid "Product Expiry"
+msgstr ""
+
+#: includes/class-product-meta.php:66 includes/class-product-meta.php:139
+msgid "Expiry Date"
+msgstr ""
+
+#: includes/class-product-meta.php:69
+msgid ""
+"Provide the date of expiry in YYYY-MM-DD format. Expires at midnight as per "
+"site timezone."
+msgstr ""
+
+#: includes/class-product-meta.php:78 includes/class-product-meta.php:153
+msgid "Expiry Time"
+msgstr ""
+
+#: includes/class-product-meta.php:85 includes/class-product-meta.php:161
+#, php-format
+msgid ""
+"Set exact expiry time. Available in <strong>Pro version</strong>. <a href="
+"\"%s\" target=\"_blank\">Learn more</a>"
+msgstr ""
+
+#: includes/class-product-meta.php:98 includes/class-product-meta.php:174
+msgid "Expiry Note (Optional)"
+msgstr ""
+
+#: includes/class-product-meta.php:101
+msgid "Provide text to display instead of the expiry date."
+msgstr ""
+
+#: includes/class-product-meta.php:106 includes/class-product-meta.php:184
+msgid "Action"
+msgstr ""
+
+#: includes/class-product-meta.php:113
+msgid "What to do when this product expires?"
+msgstr ""
+
+#: includes/class-product-meta.php:143
+msgid "Provide expiry date (YYYY-MM-DD)"
+msgstr ""
+
+#: includes/class-product-meta.php:178
+msgid "Provide text instead of expiry date"
+msgstr ""
+
+#: includes/class-product-meta.php:192
+msgid "What to do when this variation expires?"
+msgstr ""
+
+#: includes/class-settings.php:19
+msgid "Expiry Date: %date%"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

@@ -45,5 +45,9 @@ jQuery(document).ready(function($) {
             target.hide();
             input.val(val); // Update hidden/text input to the standard hook value
         }
-    });	
+    });
+    $('.woope-card').on('click', '.woope-dismiss', function(event) {
+    	event.preventDefault();
+    	$(this).closest('.woope-card').hide();
+    });
 });

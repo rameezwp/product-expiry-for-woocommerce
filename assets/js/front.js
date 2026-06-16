@@ -3,11 +3,11 @@
 	jQuery(document).ready(function($) {
 
 		$(document).on("show_variation", ".single_variation_wrap", function(event, variation) {
-			console.log(variation);
+			// console.log(variation);
 		    if (undefined !== variation.woope_text && variation.woope_text && $('.woope-variable-notice').length) {
-		    	$('.single_variation_wrap').find('.woope-variable-notice').text(variation.woope_text);
+		    	$('.woope-variable-notice').text(variation.woope_text);
 		    } else {
-		    	$('.single_variation_wrap').find('.woope-variable-notice').text("");
+		    	$('.woope-variable-notice').text("");
 		    }
 		});
 	});
