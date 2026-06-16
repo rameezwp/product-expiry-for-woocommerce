@@ -95,3 +95,51 @@ function woope_get_earliest_variation_expiry( $product ) {
 
     return apply_filters( 'woope_earliest_variation_expiry', $earliest, $product );
 }
+
+/**
+ * Whether a product/variation is currently "expired" under the new
+ * "Mark as Expired" on-expiry action.
+ *
+ * Computed dynamically from the resolved expiry timestamp so it stays
+ * correct even if the scheduled cron event was missed. Returns false for
+ * every other action value, so products using Nothing/Draft/Out of stock
+ * are completely unaffected.
+ *
+ * @param int|\WC_Product $product Product ID or object.
+ * @return bool
+ */
+function woope_is_product_expired( $product ) {
+
+    if ( is_numeric( $product ) ) {
+        $product = wc_get_product( $product );
+    }
+
+    if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+        return false;
+    }
+
+    $id = $product->get_id();
+
+    if ( get_post_meta( $id, 'woo_expiry_action', true ) !== 'expired' ) {
+        return false;
+    }
+
+    $date = get_post_meta( $id, 'woo_expiry_date', true );
+    if ( empty( $date ) ) {
+        return false;
+    }
+
+    // Respect Pro's time-aware resolver when present; otherwise mirror the
+    // free scheduler's end-of-day, site-timezone fallback.
+    $timestamp = apply_filters( 'woope_resolve_expiry_timestamp', null, $date, $id );
+
+    if ( $timestamp === null ) {
+        $tz_string = get_option( 'timezone_string' );
+        $tz_string = $tz_string ? $tz_string : 'UTC';
+        $datetime  = new \DateTime( $date, new \DateTimeZone( $tz_string ) );
+        $datetime->setTime( 23, 59, 59 );
+        $timestamp = $datetime->getTimestamp();
+    }
+
+    return ( $timestamp <= time() );
+}

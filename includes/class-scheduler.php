@@ -28,6 +28,14 @@ class Scheduler {
             'woo_expiry_schedule_action',
             [ $post_id ]
         );
+
+        // Keep the cached "expired" flag in step with the (re)scheduled date.
+        // execute() flips it back to 'yes' when the event actually fires.
+        update_post_meta(
+            $post_id,
+            'woo_expiry_expired_flag',
+            $timestamp > time() ? 'no' : 'yes'
+        );
     }
 
     public function execute( $post_id ) {
@@ -47,6 +55,14 @@ class Scheduler {
             update_post_meta( $post_id, '_stock', 0 );
             update_post_meta( $post_id, '_stock_status', 'outofstock' );
             wp_set_post_terms( $post_id, 'outofstock', 'product_visibility', true );
+        }
+
+        if ( $action === 'expired' ) {
+
+            // Keep the product published and visible; the badge + disabled
+            // add-to-cart are applied dynamically by woope_is_product_expired().
+            // The flag is a cache for queries/integrations, not load-bearing.
+            update_post_meta( $post_id, 'woo_expiry_expired_flag', 'yes' );
         }
 
         /*

@@ -8,6 +8,7 @@
             'display'   	=>  'enable',
             'orderdetails'   	=>  'disable',
             'show_earliest_variation' => 'disable',
+            'expired_badge_text' => '',
             'markup'   =>  __( 'Expiry Date: {expiry_date}', 'product-expiry-for-woocommerce' ),
             'notify_on_expired'  => 'enable',
             'notify_before_days' => '',
@@ -106,6 +107,16 @@
             		</td>
             		<td>
             			<?php _e( 'For variable products without their own expiry date, show the earliest variation expiry on the parent product page. A variation\'s own date still applies once selected.', 'product-expiry-for-woocommerce' ); ?>
+            		</td>
+            	</tr>
+
+            	<tr>
+            		<th><?php _e( 'Expired Badge Text', 'product-expiry-for-woocommerce' ); ?></th>
+            		<td>
+            			<input type="text" name="expired_badge_text" value="<?php echo isset( $savedSettings['expired_badge_text'] ) ? esc_attr( $savedSettings['expired_badge_text'] ) : ''; ?>" placeholder="<?php esc_attr_e( 'Expired', 'product-expiry-for-woocommerce' ); ?>">
+            		</td>
+            		<td>
+            			<?php _e( 'Label shown on the badge for products whose on-expiry action is "Mark as Expired". Leave blank to use the default "Expired".', 'product-expiry-for-woocommerce' ); ?>
             		</td>
             	</tr>
 

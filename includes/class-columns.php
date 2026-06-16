@@ -209,6 +209,9 @@ class Columns {
                             <option value="out">
                                 <?php _e( 'Out of stock', 'product-expiry-for-woocommerce' ); ?>
                             </option>
+                            <option value="expired">
+                                <?php _e( 'Mark as Expired', 'product-expiry-for-woocommerce' ); ?>
+                            </option>
                         </select>
                     </span>
                 </label>
