@@ -1,0 +1,26 @@
+/*
+ * RTL overrides for the Product Expiry admin settings UI.
+ * Loaded automatically by WordPress (via wp_style_add_data 'rtl' => 'replace')
+ * only when the active locale is right-to-left. LTR sites are unaffected.
+ */
+
+.woope-pro-badge {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+/* ---- Pro promo card ---- */
+.woope-pro-promo {
+    border-left: none;
+    border-right: 4px solid #6f42c1;
+    background: linear-gradient(180deg, #faf7ff 0%, #fff 60%);
+}
+
+.woope-promo-cd-label {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+.woope-promo-cd-block i {
+    letter-spacing: 0;
+}

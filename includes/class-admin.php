@@ -168,6 +168,9 @@ class Admin {
                 WOOPE_VERSION
             );
 
+            // Load admin-rtl.css automatically on RTL locales.
+            wp_style_add_data( 'woope-admin-style', 'rtl', 'replace' );
+
             wp_enqueue_script(
                 'sweetalert2',
                 WOOPE_URL . 'assets/js/sweetalert2.min.js',
