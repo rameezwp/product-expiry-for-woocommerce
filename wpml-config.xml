@@ -1,0 +1,10 @@
+<wpml-config>
+    <custom-fields>
+        <!-- Expiry data is identical in every language: copy across translations. -->
+        <custom-field action="copy">woo_expiry_date</custom-field>
+        <custom-field action="copy">woo_expiry_time</custom-field>
+        <custom-field action="copy">woo_expiry_action</custom-field>
+        <!-- The note is display text, so let it be translated per language. -->
+        <custom-field action="translate">woo_expiry_note</custom-field>
+    </custom-fields>
+</wpml-config>
