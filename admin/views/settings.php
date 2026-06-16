@@ -7,6 +7,7 @@
             'notify_emails' =>  '',
             'display'   	=>  'enable',
             'orderdetails'   	=>  'disable',
+            'show_earliest_variation' => 'disable',
             'markup'   =>  __( 'Expiry Date: {expiry_date}', 'product-expiry-for-woocommerce' ),
             'notify_on_expired'  => 'enable',
             'notify_before_days' => '',
@@ -91,6 +92,20 @@
             		</td>
             		<td>
             			<?php _e( 'Display the expiry date on single product or shop pages', 'product-expiry-for-woocommerce' ); ?>
+            		</td>
+            	</tr>
+
+            	<tr>
+            		<th><?php _e( 'Earliest Variation Expiry on Parent', 'product-expiry-for-woocommerce' ); ?></th>
+            		<td>
+            			<?php $show_earliest = isset( $savedSettings['show_earliest_variation'] ) ? $savedSettings['show_earliest_variation'] : 'disable'; ?>
+            			<select name="show_earliest_variation">
+            				<option value="disable" <?php selected( $show_earliest, 'disable' ); ?>><?php _e( 'Disable', 'product-expiry-for-woocommerce' ) ?></option>
+            				<option value="enable" <?php selected( $show_earliest, 'enable' ); ?>><?php _e( 'Enable', 'product-expiry-for-woocommerce' ) ?></option>
+            			</select>
+            		</td>
+            		<td>
+            			<?php _e( 'For variable products without their own expiry date, show the earliest variation expiry on the parent product page. A variation\'s own date still applies once selected.', 'product-expiry-for-woocommerce' ); ?>
             		</td>
             	</tr>
 

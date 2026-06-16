@@ -60,6 +60,19 @@ class Frontend {
         $expiry_date = $product->get_meta( 'woo_expiry_date' );
         $expiry_note = $product->get_meta( 'woo_expiry_note' );
 
+        // Variable products: when the parent has no expiry of its own, optionally
+        // roll up the earliest variation expiry as a summary. Opt-in and off by
+        // default, so existing stores see no change. A variation's own date still
+        // governs that variation once selected (variation_data() + front.js).
+        if (
+            empty( $expiry_date ) &&
+            empty( $expiry_note ) &&
+            $product->is_type( 'variable' ) &&
+            $settings->get( 'show_earliest_variation' ) === 'enable'
+        ) {
+            $expiry_date = woope_get_earliest_variation_expiry( $product );
+        }
+
         // If note exists → override
         if ( ! empty( $expiry_note ) ) {
             $text = $expiry_note;

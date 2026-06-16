@@ -13,10 +13,11 @@ class Settings {
 
             $defaults = [
                 'date_format'        => get_option('date_format'),
-                'display'            => 'enable',
-                'orderdetails'       => 'disable',
-                'orderdetailsadmin'  => 'disable',
-                'markup'             => __( 'Expiry Date: %date%', 'product-expiry-for-woocommerce' ),
+                'display'                => 'enable',
+                'orderdetails'           => 'disable',
+                'orderdetailsadmin'      => 'disable',
+                'markup'                 => __( 'Expiry Date: %date%', 'product-expiry-for-woocommerce' ),
+                'show_earliest_variation'=> 'disable',
             ];
 
             $this->settings = wp_parse_args(
