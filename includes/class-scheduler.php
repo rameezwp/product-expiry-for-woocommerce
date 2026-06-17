@@ -57,6 +57,24 @@ class Scheduler {
             wp_set_post_terms( $post_id, 'outofstock', 'product_visibility', true );
         }
 
+        if ( $action === 'reduce' ) {
+
+            // Lower the managed stock by the configured amount using WC CRUD so
+            // the product meta lookup table (and HPOS) stay in sync.
+            $product = wc_get_product( $post_id );
+
+            if ( $product && $product->managing_stock() ) {
+
+                $qty = (int) get_post_meta( $post_id, 'woo_expiry_reduce_qty', true );
+
+                if ( $qty > 0 ) {
+                    $current = (int) $product->get_stock_quantity();
+                    $product->set_stock_quantity( max( 0, $current - $qty ) );
+                    $product->save();
+                }
+            }
+        }
+
         if ( $action === 'expired' ) {
 
             // Keep the product published and visible; the badge + disabled
