@@ -100,6 +100,9 @@ class Admin {
             'markup'             => wp_kses_post( $_POST['markup'] ?? '' ),
             'show_earliest_variation' => sanitize_text_field( $_POST['show_earliest_variation'] ?? 'disable' ),
             'expired_badge_text' => sanitize_text_field( $_POST['expired_badge_text'] ?? '' ),
+            'expired_badge_color' => $this->sanitize_badge_color( $_POST['expired_badge_color'] ?? '' ),
+            'expired_badge_single_hook'  => sanitize_text_field( $_POST['expired_badge_single_hook'] ?? '' ),
+            'expired_badge_archive_hook' => sanitize_text_field( $_POST['expired_badge_archive_hook'] ?? '' ),
             'notify_on_expired'  => sanitize_text_field( $_REQUEST['notify_on_expired'] ?? 'enable' ),
             'notify_before_days' => sanitize_text_field( $_REQUEST['notify_before_days'] ?? '' ),
             'email_subject'      => sanitize_text_field( $_REQUEST['email_subject'] ?? '' ),
@@ -136,6 +139,24 @@ class Admin {
                 wp_send_json_error( __( 'Failed to save settings. Please try again.', 'product-expiry-for-woocommerce' ) );
             }
         }
+    }
+
+    /* -------------------------------------------------------------
+     *  HELPERS
+     * ----------------------------------------------------------- */
+
+    /**
+     * Validate a hex colour, falling back to the default badge colour.
+     */
+    private function sanitize_badge_color( $color ) {
+
+        $color = is_string( $color ) ? trim( $color ) : '';
+
+        if ( preg_match( '/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/', $color ) ) {
+            return $color;
+        }
+
+        return '#d63638';
     }
 
     /* -------------------------------------------------------------

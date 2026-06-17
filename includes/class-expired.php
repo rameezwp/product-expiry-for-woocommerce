@@ -61,11 +61,18 @@ class Expired_Status {
 
     public function register_badge_hooks() {
 
-        // Shop / archive loop badge (just before the title).
-        add_action( 'woocommerce_before_shop_loop_item_title', [ $this, 'loop_badge' ], 9 );
+        $settings = Plugin::instance()->settings;
 
-        // Single product badge (top of the summary).
-        add_action( 'woocommerce_single_product_summary', [ $this, 'single_badge' ], 4 );
+        // Single product badge — position configurable in settings.
+        $single_hook = $settings->get( 'expired_badge_single_hook' );
+        $single_hook = $single_hook ? $single_hook : 'woocommerce_single_product_summary';
+        add_action( $single_hook, [ $this, 'single_badge' ] );
+
+        // Shop / archive loop badge — position configurable (empty = hide on archives).
+        $archive_hook = $settings->get( 'expired_badge_archive_hook' );
+        if ( ! empty( $archive_hook ) ) {
+            add_action( $archive_hook, [ $this, 'loop_badge' ] );
+        }
     }
 
     public function loop_badge() {
@@ -116,5 +123,15 @@ class Expired_Status {
             [],
             WOOPE_VERSION
         );
+
+        // Apply the configurable badge colour, if a valid hex is set.
+        $color = Plugin::instance()->settings->get( 'expired_badge_color' );
+
+        if ( $color && preg_match( '/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/', $color ) ) {
+            wp_add_inline_style(
+                'woope-front-style',
+                '.woope-expired-badge{background:' . $color . ';}'
+            );
+        }
     }
 }

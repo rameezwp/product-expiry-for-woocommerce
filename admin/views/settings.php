@@ -9,6 +9,9 @@
             'orderdetails'   	=>  'disable',
             'show_earliest_variation' => 'disable',
             'expired_badge_text' => '',
+            'expired_badge_color' => '#d63638',
+            'expired_badge_single_hook' => 'woocommerce_single_product_summary',
+            'expired_badge_archive_hook' => 'woocommerce_before_shop_loop_item_title',
             'markup'   =>  __( 'Expiry Date: {expiry_date}', 'product-expiry-for-woocommerce' ),
             'notify_on_expired'  => 'enable',
             'notify_before_days' => '',
@@ -19,6 +22,12 @@
 
         $is_custom_single  = !empty($savedSettings['single_hook']) && !array_key_exists($savedSettings['single_hook'], $common_single_hooks);
         $is_custom_archive = !empty($savedSettings['archive_hook']) && !array_key_exists($savedSettings['archive_hook'], $common_archive_hooks);
+
+        $badge_single_hook  = isset($savedSettings['expired_badge_single_hook']) ? $savedSettings['expired_badge_single_hook'] : 'woocommerce_single_product_summary';
+        $badge_archive_hook = isset($savedSettings['expired_badge_archive_hook']) ? $savedSettings['expired_badge_archive_hook'] : 'woocommerce_before_shop_loop_item_title';
+        $badge_color        = isset($savedSettings['expired_badge_color']) ? $savedSettings['expired_badge_color'] : '#d63638';
+        $is_custom_badge_single  = !empty($badge_single_hook) && !array_key_exists($badge_single_hook, $common_single_hooks);
+        $is_custom_badge_archive = !empty($badge_archive_hook) && !array_key_exists($badge_archive_hook, $common_archive_hooks);
 	?>	
     <h1><?php _e( 'Woo Product Expiry Settings', 'product-expiry-for-woocommerce' ); ?></h1>
 
@@ -117,6 +126,70 @@
             		</td>
             		<td>
             			<?php _e( 'Label shown on the badge for products whose on-expiry action is "Mark as Expired". Leave blank to use the default "Expired".', 'product-expiry-for-woocommerce' ); ?>
+            		</td>
+            	</tr>
+
+            	<tr>
+            		<th><?php _e( 'Expired Badge Color', 'product-expiry-for-woocommerce' ); ?></th>
+            		<td>
+            			<input type="color" name="expired_badge_color" value="<?php echo esc_attr( $badge_color ); ?>">
+            		</td>
+            		<td>
+            			<?php _e( 'Background color of the "Expired" badge.', 'product-expiry-for-woocommerce' ); ?>
+            		</td>
+            	</tr>
+
+            	<tr>
+            		<th><?php _e( 'Expired Badge Position (Single Product)', 'product-expiry-for-woocommerce' ); ?></th>
+            		<td>
+            			<select class="woope-hook-selector" data-target="custom_badge_single_container">
+            				<?php
+            				foreach ( $common_single_hooks as $hook => $label ) {
+            					printf(
+            						'<option value="%s" %s>%s</option>',
+            						esc_attr( $hook ),
+            						selected( $badge_single_hook, $hook, false ),
+            						esc_html( $label )
+            					);
+            				}
+            				?>
+            				<option value="custom" <?php selected( $is_custom_badge_single, true ); ?>><?php _e( 'Custom Hook Name...', 'product-expiry-for-woocommerce' ); ?></option>
+            			</select>
+            			<div id="custom_badge_single_container" style="<?php echo $is_custom_badge_single ? '' : 'display:none;'; ?> margin-top:10px;">
+            				<input type="text" name="expired_badge_single_hook" class="widefat"
+            					value="<?php echo esc_attr( $badge_single_hook ); ?>"
+            					placeholder="<?php esc_attr_e( 'Enter custom hook name', 'product-expiry-for-woocommerce' ); ?>">
+            			</div>
+            		</td>
+            		<td>
+            			<?php _e( 'Where the "Expired" badge appears on the single product page.', 'product-expiry-for-woocommerce' ); ?>
+            		</td>
+            	</tr>
+
+            	<tr>
+            		<th><?php _e( 'Expired Badge Position (Shop / Archive)', 'product-expiry-for-woocommerce' ); ?></th>
+            		<td>
+            			<select class="woope-hook-selector" data-target="custom_badge_archive_container">
+            				<?php
+            				foreach ( $common_archive_hooks as $hook => $label ) {
+            					printf(
+            						'<option value="%s" %s>%s</option>',
+            						esc_attr( $hook ),
+            						selected( $badge_archive_hook, $hook, false ),
+            						esc_html( $label )
+            					);
+            				}
+            				?>
+            				<option value="custom" <?php selected( $is_custom_badge_archive, true ); ?>><?php _e( 'Custom Hook Name...', 'product-expiry-for-woocommerce' ); ?></option>
+            			</select>
+            			<div id="custom_badge_archive_container" style="<?php echo $is_custom_badge_archive ? '' : 'display:none;'; ?> margin-top:10px;">
+            				<input type="text" name="expired_badge_archive_hook" class="widefat"
+            					value="<?php echo esc_attr( $badge_archive_hook ); ?>"
+            					placeholder="<?php esc_attr_e( 'Enter custom hook name (leave blank to hide on archives)', 'product-expiry-for-woocommerce' ); ?>">
+            			</div>
+            		</td>
+            		<td>
+            			<?php _e( 'Where the "Expired" badge appears on shop and category pages. Leave the custom field blank to hide it on archives.', 'product-expiry-for-woocommerce' ); ?>
             		</td>
             	</tr>
 

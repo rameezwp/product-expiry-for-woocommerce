@@ -19,6 +19,9 @@ class Settings {
                 'markup'                 => __( 'Expiry Date: %date%', 'product-expiry-for-woocommerce' ),
                 'show_earliest_variation'=> 'disable',
                 'expired_badge_text'     => '',
+                'expired_badge_color'        => '#d63638',
+                'expired_badge_single_hook'  => 'woocommerce_single_product_summary',
+                'expired_badge_archive_hook' => 'woocommerce_before_shop_loop_item_title',
             ];
 
             $this->settings = wp_parse_args(
