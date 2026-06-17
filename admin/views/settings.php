@@ -84,13 +84,23 @@ $render_hook_picker = function( $field_name, $current, $hooks, $is_custom, $targ
         <a href="#woope-notifications"><?php esc_html_e( 'Notifications', 'product-expiry-for-woocommerce' ); ?></a>
     </nav>
 
-    <?php if ( ! defined( 'WOOPE_PRO_VERSION' ) ) : ?>
+    <?php if ( $this->should_show_promo() ) :
+        $milestone = $this->get_usage_milestone();
+        if ( $milestone === 'one_year' ) {
+            $loyalty_line = __( 'You’ve been using Product Expiry for over a year 🎉 — thank you! Ready to do more?', 'product-expiry-for-woocommerce' );
+        } else {
+            $loyalty_line = __( 'You’ve been using Product Expiry for 6 months 🎉 — thanks for trusting us! Ready to do more?', 'product-expiry-for-woocommerce' );
+        }
+        $dismiss_url = wp_nonce_url( add_query_arg( 'woope_dismiss_promo', '1' ), 'woope_dismiss_promo' );
+    ?>
     <div class="woope-card woope-pro-promo">
         <h2 class="woope-card-head">
             <span class="woope-card-icon">✨</span>
             <?php esc_html_e( 'Product Expiry Pro', 'product-expiry-for-woocommerce' ); ?>
             <span class="woope-pro-badge"><?php esc_html_e( 'PRO', 'product-expiry-for-woocommerce' ); ?></span>
+            <a class="woope-dismiss" href="<?php echo esc_url( $dismiss_url ); ?>" aria-label="<?php esc_attr_e( 'Dismiss', 'product-expiry-for-woocommerce' ); ?>" title="<?php esc_attr_e( 'Dismiss', 'product-expiry-for-woocommerce' ); ?>">&times;</a>
         </h2>
+        <p class="woope-loyalty-line"><?php echo esc_html( $loyalty_line ); ?></p>
         <div class="woope-pro-promo-grid">
             <div class="woope-pro-promo-feature">
                 <h3>⏱ <?php esc_html_e( 'Countdown Timer', 'product-expiry-for-woocommerce' ); ?></h3>
@@ -102,7 +112,7 @@ $render_hook_picker = function( $field_name, $current, $hooks, $is_custom, $targ
             </div>
         </div>
         <p style="margin:16px 0 0;">
-            <a href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=upgrade" target="_blank" rel="noopener" class="button button-primary"><?php esc_html_e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' ); ?> →</a>
+            <a href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=loyalty-upgrade" target="_blank" rel="noopener" class="button button-primary"><?php esc_html_e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' ); ?> →</a>
         </p>
     </div>
     <?php endif; ?>

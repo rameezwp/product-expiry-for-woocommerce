@@ -187,3 +187,20 @@
 }
 .woope-pro-promo-feature h3 { margin: 0 0 6px; font-size: 14px; }
 .woope-pro-promo-feature p  { margin: 0; color: #555; font-size: 13px; line-height: 1.6; }
+
+.woope-loyalty-line {
+    margin: 12px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4f2d8f;
+}
+
+.woope-dismiss {
+    margin-left: auto;
+    color: #8a8f98;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 400;
+}
+.woope-dismiss:hover { color: #d63638; }

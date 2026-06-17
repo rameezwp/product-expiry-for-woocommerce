@@ -46,11 +46,6 @@ jQuery(document).ready(function($) {
             input.val(val); // Update hidden/text input to the standard hook value
         }
     });
-    $('.woope-card').on('click', '.woope-dismiss', function(event) {
-    	event.preventDefault();
-    	$(this).closest('.woope-card').hide();
-    });
-
     // Toggle the custom-text row for the "after expiry" display setting.
     $('#woope_expired_date_display').on('change', function() {
         $('#woope_expired_custom_row').toggle($(this).val() === 'custom');

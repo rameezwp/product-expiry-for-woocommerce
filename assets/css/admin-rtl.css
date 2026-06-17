@@ -16,3 +16,8 @@
 .woope-card .form-table th {
     text-align: right;
 }
+
+.woope-dismiss {
+    margin-left: 0;
+    margin-right: auto;
+}
