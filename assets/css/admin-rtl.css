@@ -9,18 +9,10 @@
     margin-right: 8px;
 }
 
-/* ---- Pro promo card ---- */
-.woope-pro-promo {
-    border-left: none;
-    border-right: 4px solid #6f42c1;
-    background: linear-gradient(180deg, #faf7ff 0%, #fff 60%);
+.woope-hero {
+    background: linear-gradient(240deg, #4f2d8f 0%, #6f42c1 55%, #8b5cf6 100%);
 }
 
-.woope-promo-cd-label {
-    margin-right: 0;
-    margin-left: 4px;
-}
-
-.woope-promo-cd-block i {
-    letter-spacing: 0;
+.woope-card .form-table th {
+    text-align: right;
 }

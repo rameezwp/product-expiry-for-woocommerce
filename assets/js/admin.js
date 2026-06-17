@@ -50,4 +50,9 @@ jQuery(document).ready(function($) {
     	event.preventDefault();
     	$(this).closest('.woope-card').hide();
     });
+
+    // Toggle the custom-text row for the "after expiry" display setting.
+    $('#woope_expired_date_display').on('change', function() {
+        $('#woope_expired_custom_row').toggle($(this).val() === 'custom');
+    });
 });

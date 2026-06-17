@@ -99,6 +99,8 @@ class Admin {
             'orderdetailsadmin'  => sanitize_text_field( $_POST['orderdetailsadmin'] ?? '' ),
             'markup'             => wp_kses_post( $_POST['markup'] ?? '' ),
             'show_earliest_variation' => sanitize_text_field( $_POST['show_earliest_variation'] ?? 'disable' ),
+            'expired_date_display' => sanitize_text_field( $_POST['expired_date_display'] ?? 'show' ),
+            'expired_date_custom_text' => sanitize_text_field( $_POST['expired_date_custom_text'] ?? '' ),
             'expired_badge_text' => sanitize_text_field( $_POST['expired_badge_text'] ?? '' ),
             'expired_badge_color' => $this->sanitize_badge_color( $_POST['expired_badge_color'] ?? '' ),
             'expired_badge_single_hook'  => sanitize_text_field( $_POST['expired_badge_single_hook'] ?? '' ),

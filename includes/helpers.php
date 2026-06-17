@@ -97,6 +97,56 @@ function woope_get_earliest_variation_expiry( $product ) {
 }
 
 /**
+ * Resolve the final expiry Unix timestamp for a product/variation.
+ *
+ * Respects Pro's time-aware resolver via the woope_resolve_expiry_timestamp
+ * filter; otherwise mirrors the free scheduler's end-of-day, site-timezone
+ * fallback. Single source of truth for "when does this expire".
+ *
+ * @param int         $post_id Product/variation ID.
+ * @param string|null $date    Optional Y-m-d date; read from meta when null.
+ * @return int|null Unix timestamp, or null when no date is set.
+ */
+function woope_get_expiry_timestamp( $post_id, $date = null ) {
+
+    if ( $date === null ) {
+        $date = get_post_meta( $post_id, 'woo_expiry_date', true );
+    }
+
+    if ( empty( $date ) ) {
+        return null;
+    }
+
+    $timestamp = apply_filters( 'woope_resolve_expiry_timestamp', null, $date, $post_id );
+
+    if ( $timestamp === null ) {
+        $tz_string = get_option( 'timezone_string' );
+        $tz_string = $tz_string ? $tz_string : 'UTC';
+        $datetime  = new \DateTime( $date, new \DateTimeZone( $tz_string ) );
+        $datetime->setTime( 23, 59, 59 );
+        $timestamp = $datetime->getTimestamp();
+    }
+
+    return $timestamp;
+}
+
+/**
+ * Whether a product's expiry date/time has already passed.
+ *
+ * Independent of the on-expiry action — purely a "is now past expiry" check.
+ *
+ * @param int         $post_id Product/variation ID.
+ * @param string|null $date    Optional Y-m-d date; read from meta when null.
+ * @return bool
+ */
+function woope_expiry_has_passed( $post_id, $date = null ) {
+
+    $timestamp = woope_get_expiry_timestamp( $post_id, $date );
+
+    return ( $timestamp !== null && $timestamp <= time() );
+}
+
+/**
  * Whether a product/variation is currently "expired" under the new
  * "Mark as Expired" on-expiry action.
  *
@@ -124,22 +174,5 @@ function woope_is_product_expired( $product ) {
         return false;
     }
 
-    $date = get_post_meta( $id, 'woo_expiry_date', true );
-    if ( empty( $date ) ) {
-        return false;
-    }
-
-    // Respect Pro's time-aware resolver when present; otherwise mirror the
-    // free scheduler's end-of-day, site-timezone fallback.
-    $timestamp = apply_filters( 'woope_resolve_expiry_timestamp', null, $date, $id );
-
-    if ( $timestamp === null ) {
-        $tz_string = get_option( 'timezone_string' );
-        $tz_string = $tz_string ? $tz_string : 'UTC';
-        $datetime  = new \DateTime( $date, new \DateTimeZone( $tz_string ) );
-        $datetime->setTime( 23, 59, 59 );
-        $timestamp = $datetime->getTimestamp();
-    }
-
-    return ( $timestamp <= time() );
+    return woope_expiry_has_passed( $id );
 }
