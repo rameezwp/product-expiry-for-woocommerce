@@ -37,6 +37,7 @@ class Plugin {
         require_once WOOPE_PATH . 'includes/class-filter.php';
         require_once WOOPE_PATH . 'includes/class-multilingual.php';
         require_once WOOPE_PATH . 'includes/class-expired.php';
+        require_once WOOPE_PATH . 'includes/class-email-log.php';
     }
 
     private function init_modules() {
@@ -51,6 +52,7 @@ class Plugin {
         new Filter_Admin();
         new Multilingual();
         new Expired_Status();
+        new Email_Log();
     }
 
     private function load_textdomain() {

@@ -185,13 +185,20 @@ class Scheduler {
             $body_template
         );
 
-        wp_mail(
+        $sent = wp_mail(
             $settings['notify_emails'],
             $subject,
             $message,
             $headers
         );
-    }    
+
+        woope_log_email(
+            $settings['notify_emails'],
+            $subject,
+            __( 'On-expiry (admin)', 'product-expiry-for-woocommerce' ),
+            $sent ? 'sent' : 'failed'
+        );
+    }
 
     private function resolve_expiry_timestamp( $date_string, $post_id ) {
 

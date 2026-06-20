@@ -147,6 +147,23 @@ function woope_expiry_has_passed( $post_id, $date = null ) {
 }
 
 /**
+ * Record a plugin-sent email in the Email Log.
+ *
+ * Safe to call from Pro: no-ops gracefully if the (free) Email_Log class is
+ * not present on an older free version.
+ *
+ * @param string|array $to      Recipient(s).
+ * @param string       $subject Subject line.
+ * @param string       $type    Human-readable category.
+ * @param string       $status  'sent' or 'failed'.
+ */
+function woope_log_email( $to, $subject, $type = '', $status = 'sent' ) {
+    if ( class_exists( '\WOOPE\Email_Log' ) ) {
+        \WOOPE\Email_Log::log( $to, $subject, $type, $status );
+    }
+}
+
+/**
  * Whether a product/variation is currently "expired" under the new
  * "Mark as Expired" on-expiry action.
  *
