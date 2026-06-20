@@ -17,7 +17,14 @@
     text-align: right;
 }
 
-.woope-dismiss {
-    margin-left: 0;
-    margin-right: auto;
+.woope-upsell-list li {
+    padding: 7px 26px 7px 0;
+}
+.woope-upsell-list li::before {
+    left: auto;
+    right: 0;
+}
+
+.woope-upsell-head {
+    background: linear-gradient(240deg, #4f2d8f 0%, #6f42c1 60%, #8b5cf6 100%);
 }

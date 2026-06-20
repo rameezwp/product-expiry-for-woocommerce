@@ -3,7 +3,27 @@
  * ========================================================= */
 
 .woope-settings {
-    max-width: 980px;
+    max-width: 1240px;
+}
+
+/* ---- Two-column body (content + sticky upgrade aside) ---- */
+.woope-body {
+    display: block;
+}
+.woope-body.has-aside {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+.woope-content {
+    flex: 1;
+    min-width: 0;
+}
+.woope-aside {
+    width: 290px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 40px;
 }
 
 /* ---- Hero header ---- */
@@ -169,38 +189,79 @@
     vertical-align: middle;
 }
 
-/* ---- Pro promo card ---- */
-.woope-pro-promo {
+/* ---- Upgrade banner (right sidebar) ---- */
+.woope-upsell {
+    background: #fff;
     border: 1px solid #e7dcff;
-    background: linear-gradient(180deg, #faf7ff 0%, #fff 60%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(111, 66, 193, 0.12);
 }
-.woope-pro-promo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 16px;
+.woope-upsell-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 20px;
+    background: linear-gradient(120deg, #4f2d8f 0%, #6f42c1 60%, #8b5cf6 100%);
+    color: #fff;
+}
+.woope-upsell-head .woope-card-icon {
+    background: rgba(255, 255, 255, 0.18);
+}
+.woope-upsell-head h2 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+.woope-upsell-sub {
+    margin: 0;
+    padding: 16px 20px 4px;
+    font-weight: 600;
+    color: #1d2327;
+}
+.woope-upsell-list {
+    margin: 0;
+    padding: 8px 20px 4px;
+    list-style: none;
+}
+.woope-upsell-list li {
+    position: relative;
+    padding: 7px 0 7px 26px;
+    font-size: 13px;
+    color: #3c434a;
+    border-bottom: 1px solid #f3f0fa;
+}
+.woope-upsell-list li:last-child { border-bottom: none; }
+.woope-upsell-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    color: #6f42c1;
+    font-weight: 700;
+}
+.woope-upsell-btn {
+    display: block;
+    text-align: center;
+    margin: 14px 20px 8px;
+}
+.woope-upsell-link {
+    display: block;
+    text-align: center;
+    padding: 0 20px 18px;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: #6f42c1;
+}
+
+@media (max-width: 960px) {
+    .woope-body.has-aside { flex-direction: column; }
+    .woope-aside { width: 100%; position: static; }
 }
 @media (max-width: 782px) {
-    .woope-pro-promo-grid { grid-template-columns: 1fr; }
     .woope-hero { flex-direction: column; align-items: flex-start; }
     .woope-card .form-table th { width: auto; }
 }
-.woope-pro-promo-feature h3 { margin: 0 0 6px; font-size: 14px; }
-.woope-pro-promo-feature p  { margin: 0; color: #555; font-size: 13px; line-height: 1.6; }
-
-.woope-loyalty-line {
-    margin: 12px 0 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #4f2d8f;
-}
-
-.woope-dismiss {
-    margin-left: auto;
-    color: #8a8f98;
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 1;
-    font-weight: 400;
-}
-.woope-dismiss:hover { color: #d63638; }

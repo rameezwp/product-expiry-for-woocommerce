@@ -84,38 +84,9 @@ $render_hook_picker = function( $field_name, $current, $hooks, $is_custom, $targ
         <a href="#woope-notifications"><?php esc_html_e( 'Notifications', 'product-expiry-for-woocommerce' ); ?></a>
     </nav>
 
-    <?php if ( $this->should_show_promo() ) :
-        $milestone = $this->get_usage_milestone();
-        if ( $milestone === 'one_year' ) {
-            $loyalty_line = __( 'You’ve been using Product Expiry for over a year 🎉 — thank you! Ready to do more?', 'product-expiry-for-woocommerce' );
-        } else {
-            $loyalty_line = __( 'You’ve been using Product Expiry for 6 months 🎉 — thanks for trusting us! Ready to do more?', 'product-expiry-for-woocommerce' );
-        }
-        $dismiss_url = wp_nonce_url( add_query_arg( 'woope_dismiss_promo', '1' ), 'woope_dismiss_promo' );
-    ?>
-    <div class="woope-card woope-pro-promo">
-        <h2 class="woope-card-head">
-            <span class="woope-card-icon">✨</span>
-            <?php esc_html_e( 'Product Expiry Pro', 'product-expiry-for-woocommerce' ); ?>
-            <span class="woope-pro-badge"><?php esc_html_e( 'PRO', 'product-expiry-for-woocommerce' ); ?></span>
-            <a class="woope-dismiss" href="<?php echo esc_url( $dismiss_url ); ?>" aria-label="<?php esc_attr_e( 'Dismiss', 'product-expiry-for-woocommerce' ); ?>" title="<?php esc_attr_e( 'Dismiss', 'product-expiry-for-woocommerce' ); ?>">&times;</a>
-        </h2>
-        <p class="woope-loyalty-line"><?php echo esc_html( $loyalty_line ); ?></p>
-        <div class="woope-pro-promo-grid">
-            <div class="woope-pro-promo-feature">
-                <h3>⏱ <?php esc_html_e( 'Countdown Timer', 'product-expiry-for-woocommerce' ); ?></h3>
-                <p><?php esc_html_e( 'Live day/hour/min/sec countdown on product pages, with urgency colouring and three display styles.', 'product-expiry-for-woocommerce' ); ?></p>
-            </div>
-            <div class="woope-pro-promo-feature">
-                <h3>📊 <?php esc_html_e( 'CSV Bulk Tools, Batch Tracking & More', 'product-expiry-for-woocommerce' ); ?></h3>
-                <p><?php esc_html_e( 'Exact expiry time, pre-expiry reminders, auto-discounts, batch/lot tracking with FEFO, and CSV import/export.', 'product-expiry-for-woocommerce' ); ?></p>
-            </div>
-        </div>
-        <p style="margin:16px 0 0;">
-            <a href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=loyalty-upgrade" target="_blank" rel="noopener" class="button button-primary"><?php esc_html_e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' ); ?> →</a>
-        </p>
-    </div>
-    <?php endif; ?>
+    <div class="woope-body<?php echo defined( 'WOOPE_PRO_VERSION' ) ? '' : ' has-aside'; ?>">
+
+    <div class="woope-content">
 
     <form action="#" class="woope-form">
 
@@ -324,4 +295,32 @@ $render_hook_picker = function( $field_name, $current, $hooks, $is_custom, $targ
         </div>
 
     </form>
+
+    </div><!-- /.woope-content -->
+
+    <?php if ( ! defined( 'WOOPE_PRO_VERSION' ) ) : ?>
+    <!-- ================= UPGRADE BANNER (always visible) ================= -->
+    <aside class="woope-aside">
+        <div class="woope-upsell">
+            <div class="woope-upsell-head">
+                <span class="woope-card-icon">✨</span>
+                <h2><?php esc_html_e( 'Product Expiry Pro', 'product-expiry-for-woocommerce' ); ?></h2>
+            </div>
+            <p class="woope-upsell-sub"><?php esc_html_e( 'Unlock the full toolkit:', 'product-expiry-for-woocommerce' ); ?></p>
+            <ul class="woope-upsell-list">
+                <li><?php esc_html_e( 'Live countdown timers', 'product-expiry-for-woocommerce' ); ?></li>
+                <li><?php esc_html_e( 'Exact expiry time (HH:MM)', 'product-expiry-for-woocommerce' ); ?></li>
+                <li><?php esc_html_e( 'Customer pre-expiry reminders', 'product-expiry-for-woocommerce' ); ?></li>
+                <li><?php esc_html_e( 'Auto-discount before expiry', 'product-expiry-for-woocommerce' ); ?></li>
+                <li><?php esc_html_e( 'Batch / lot tracking with FEFO', 'product-expiry-for-woocommerce' ); ?></li>
+                <li><?php esc_html_e( 'CSV bulk import / export', 'product-expiry-for-woocommerce' ); ?></li>
+                <li><?php esc_html_e( 'Premium expiry dashboard', 'product-expiry-for-woocommerce' ); ?></li>
+            </ul>
+            <a href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=upgrade" target="_blank" rel="noopener" class="button button-primary button-hero woope-upsell-btn"><?php esc_html_e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' ); ?> →</a>
+            <a class="woope-upsell-link" href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=learn-more" target="_blank" rel="noopener"><?php esc_html_e( 'See all features', 'product-expiry-for-woocommerce' ); ?></a>
+        </div>
+    </aside>
+    <?php endif; ?>
+
+    </div><!-- /.woope-body -->
 </div>
