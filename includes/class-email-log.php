@@ -209,7 +209,9 @@ class Email_Log {
     }
 
     private function redirect_back() {
-        wp_safe_redirect( menu_page_url( 'woope-email-log', false ) );
+        // Built directly (not via menu_page_url) because this runs on
+        // admin-post.php, where the admin menu is not registered.
+        wp_safe_redirect( admin_url( 'admin.php?page=woope-email-log' ) );
         exit;
     }
 }
