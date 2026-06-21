@@ -5,12 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Admin {
 
+    /** @var string Hook suffix of the settings page, for asset loading. */
+    private $settings_hook = '';
+
     public function __construct() {
 
-        // Settings submenu
+        // Top-level menu + settings page (priority 9 so the parent exists
+        // before Pro / Email Log attach their submenus).
         add_action(
             'admin_menu',
-            [ $this, 'add_settings_page' ]
+            [ $this, 'add_settings_page' ],
+            9
         );
 
         // AJAX save
@@ -40,12 +45,26 @@ class Admin {
 
     public function add_settings_page() {
 
+        // Dedicated top-level "Product Expiry" menu. Visible to shop managers
+        // (manage_woocommerce) so Pro's dashboard/CSV/batch pages remain
+        // reachable; the Settings page itself stays admin-only below.
+        $this->settings_hook = add_menu_page(
+            __( 'Product Expiry', 'product-expiry-for-woocommerce' ),
+            __( 'Product Expiry', 'product-expiry-for-woocommerce' ),
+            'manage_woocommerce',
+            WOOPE_MENU_SLUG,
+            [ $this, 'render_settings_page' ],
+            'dashicons-clock',
+            56
+        );
+
+        // Rename the auto-created first item to "Settings" (admin-only).
         add_submenu_page(
-            'edit.php?post_type=product',
+            WOOPE_MENU_SLUG,
             __( 'Product Expiry Settings', 'product-expiry-for-woocommerce' ),
-            __( 'Expiry Settings', 'product-expiry-for-woocommerce' ),
+            __( 'Settings', 'product-expiry-for-woocommerce' ),
             'manage_options',
-            'products_expiry_settings',
+            WOOPE_MENU_SLUG,
             [ $this, 'render_settings_page' ]
         );
     }
@@ -185,7 +204,7 @@ class Admin {
         }
 
         // Settings page
-        if ( $hook === 'product_page_products_expiry_settings' ) {
+        if ( $hook === $this->settings_hook ) {
             wp_enqueue_style(
                 'woope-admin-style',
                 WOOPE_URL . 'assets/css/admin.css',
@@ -231,9 +250,7 @@ class Admin {
 
         if ( strpos( $file, 'product-expiry-for-woocommerce.php' ) !== false ) {
 
-            $settings_url = admin_url(
-                'edit.php?post_type=product&page=products_expiry_settings'
-            );
+            $settings_url = menu_page_url( WOOPE_MENU_SLUG, false );
 
             $links[] = '<a href="' . esc_url( $settings_url ) . '">' .
                 __( 'Settings', 'product-expiry-for-woocommerce' ) .

@@ -93,7 +93,7 @@ class Email_Log {
 
     public function register_menu() {
         add_submenu_page(
-            'edit.php?post_type=product',
+            WOOPE_MENU_SLUG,
             __( 'Expiry Email Log', 'product-expiry-for-woocommerce' ),
             __( 'Email Log', 'product-expiry-for-woocommerce' ),
             'manage_options',
@@ -209,7 +209,7 @@ class Email_Log {
     }
 
     private function redirect_back() {
-        wp_safe_redirect( admin_url( 'edit.php?post_type=product&page=woope-email-log' ) );
+        wp_safe_redirect( menu_page_url( 'woope-email-log', false ) );
         exit;
     }
 }
