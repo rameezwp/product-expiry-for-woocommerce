@@ -105,12 +105,23 @@ class Product_Meta {
                     'id'          => 'woo_expiry_action',
                     'label'       => __( 'Action', 'product-expiry-for-woocommerce' ),
                     'options'     => [
-                        ''      => __( 'Nothing', 'product-expiry-for-woocommerce' ),
-                        'draft' => __( 'Make it Draft', 'product-expiry-for-woocommerce' ),
-                        'out'   => __( 'Out of stock', 'product-expiry-for-woocommerce' ),
+                        ''        => __( 'Nothing', 'product-expiry-for-woocommerce' ),
+                        'draft'   => __( 'Make it Draft', 'product-expiry-for-woocommerce' ),
+                        'out'     => __( 'Out of stock', 'product-expiry-for-woocommerce' ),
+                        'reduce'  => __( 'Reduce stock by amount', 'product-expiry-for-woocommerce' ),
+                        'expired' => __( 'Mark as Expired (badge + disable purchase)', 'product-expiry-for-woocommerce' ),
                     ],
                     'desc_tip'    => true,
                     'description' => __( 'What to do when this product expires?', 'product-expiry-for-woocommerce' ),
+                ]);
+
+                woocommerce_wp_text_input([
+                    'id'                => 'woo_expiry_reduce_qty',
+                    'label'             => __( 'Reduce Stock By', 'product-expiry-for-woocommerce' ),
+                    'type'              => 'number',
+                    'desc_tip'          => true,
+                    'description'       => __( 'Used only with the "Reduce stock by amount" action: lower the managed stock quantity by this amount on expiry.', 'product-expiry-for-woocommerce' ),
+                    'custom_attributes' => [ 'min' => '0', 'step' => '1' ],
                 ]);
 
                 ?>
@@ -184,13 +195,26 @@ class Product_Meta {
                 'label'         => __( 'Action', 'product-expiry-for-woocommerce' ),
                 'wrapper_class' => 'form-row form-row-last',
                 'options'       => [
-                    ''      => __( 'Nothing', 'product-expiry-for-woocommerce' ),
-                    'draft' => __( 'Make it Draft', 'product-expiry-for-woocommerce' ),
-                    'out'   => __( 'Out of stock', 'product-expiry-for-woocommerce' ),
+                    ''        => __( 'Nothing', 'product-expiry-for-woocommerce' ),
+                    'draft'   => __( 'Make it Draft', 'product-expiry-for-woocommerce' ),
+                    'out'     => __( 'Out of stock', 'product-expiry-for-woocommerce' ),
+                    'reduce'  => __( 'Reduce stock by amount', 'product-expiry-for-woocommerce' ),
+                    'expired' => __( 'Mark as Expired (badge + disable purchase)', 'product-expiry-for-woocommerce' ),
                 ],
                 'desc_tip'      => true,
                 'description'   => __( 'What to do when this variation expires?', 'product-expiry-for-woocommerce' ),
                 'value'         => get_post_meta( $variation_id, 'woo_expiry_action', true ),
+            ]);
+
+            woocommerce_wp_text_input([
+                'id'                => '_woope_reduce_qty[' . $variation_id . ']',
+                'label'             => __( 'Reduce Stock By', 'product-expiry-for-woocommerce' ),
+                'type'              => 'number',
+                'wrapper_class'     => 'form-row form-row-full',
+                'desc_tip'          => true,
+                'description'       => __( 'Used only with the "Reduce stock by amount" action.', 'product-expiry-for-woocommerce' ),
+                'custom_attributes' => [ 'min' => '0', 'step' => '1' ],
+                'value'             => get_post_meta( $variation_id, 'woo_expiry_reduce_qty', true ),
             ]);
 
             ?>
@@ -217,6 +241,10 @@ class Product_Meta {
         $product->update_meta_data( 'woo_expiry_note', $note );
         $product->update_meta_data( 'woo_expiry_action', $action );
 
+        if ( isset( $_POST['woo_expiry_reduce_qty'] ) ) {
+            $product->update_meta_data( 'woo_expiry_reduce_qty', absint( $_POST['woo_expiry_reduce_qty'] ) );
+        }
+
         $product->save();
 
         $this->handle_scheduling( $post_id, $date, $action );
@@ -239,6 +267,14 @@ class Product_Meta {
         update_post_meta( $variation_id, 'woo_expiry_date', $date );
         update_post_meta( $variation_id, 'woo_expiry_note', $note );
         update_post_meta( $variation_id, 'woo_expiry_action', $action );
+
+        if ( isset( $_POST['_woope_reduce_qty'][ $variation_id ] ) ) {
+            update_post_meta(
+                $variation_id,
+                'woo_expiry_reduce_qty',
+                absint( $_POST['_woope_reduce_qty'][ $variation_id ] )
+            );
+        }
 
         $this->handle_scheduling( $variation_id, $date, $action );
     }

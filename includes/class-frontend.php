@@ -60,6 +60,19 @@ class Frontend {
         $expiry_date = $product->get_meta( 'woo_expiry_date' );
         $expiry_note = $product->get_meta( 'woo_expiry_note' );
 
+        // Variable products: when the parent has no expiry of its own, optionally
+        // roll up the earliest variation expiry as a summary. Opt-in and off by
+        // default, so existing stores see no change. A variation's own date still
+        // governs that variation once selected (variation_data() + front.js).
+        if (
+            empty( $expiry_date ) &&
+            empty( $expiry_note ) &&
+            $product->is_type( 'variable' ) &&
+            $settings->get( 'show_earliest_variation' ) === 'enable'
+        ) {
+            $expiry_date = woope_get_earliest_variation_expiry( $product );
+        }
+
         // If note exists → override
         if ( ! empty( $expiry_note ) ) {
             $text = $expiry_note;
@@ -70,6 +83,9 @@ class Frontend {
             );
         }
 
+        // Apply the "after expiry" display rule (show / hide / custom text).
+        $text = $this->apply_expiry_visibility( $text, $product->get_id(), $expiry_date );
+
         if ($text) {
             echo '<p class="woope-notice">' . wp_kses_post( $text ) . '</p>';
         }
@@ -78,6 +94,40 @@ class Frontend {
         if ( $product->is_type( 'variable' ) ) {
             echo '<p class="woope-variable-notice"></p>';
         }
+    }
+
+    /**
+     * Apply the "After Expiry" display setting to already-prepared expiry text.
+     *
+     * Returns the text unchanged unless a real date has passed, in which case
+     * it is kept (show), blanked (hide), or replaced with custom text. Default
+     * is "show", so existing stores see no change.
+     *
+     * @param string $text    Prepared expiry text (formatted date or note).
+     * @param int    $post_id Product/variation ID.
+     * @param string $date    Raw Y-m-d expiry date.
+     * @return string
+     */
+    private function apply_expiry_visibility( $text, $post_id, $date ) {
+
+        if ( empty( $date ) || ! woope_expiry_has_passed( $post_id, $date ) ) {
+            return $text;
+        }
+
+        $settings = Plugin::instance()->settings;
+        $mode     = $settings->get( 'expired_date_display' );
+
+        if ( $mode === 'hide' ) {
+            return '';
+        }
+
+        if ( $mode === 'custom' ) {
+            $custom = $settings->get( 'expired_date_custom_text' );
+            return ( $custom !== null && $custom !== '' ) ? $custom : $text;
+        }
+
+        // 'show' (default) — leave unchanged.
+        return $text;
     }
 
     /* -------------------------------------------------------------
@@ -126,6 +176,13 @@ class Frontend {
             );
         }
 
+        // Apply the "after expiry" display rule for the selected variation.
+        $variation['woope_text'] = $this->apply_expiry_visibility(
+            $variation['woope_text'],
+            $variation_id,
+            $expiry_date
+        );
+
         return $variation;
     }
 
@@ -159,6 +216,13 @@ class Frontend {
                 $expiry_date,
                 $product->get_id()
             );
+        }
+
+        // Apply the "after expiry" display rule.
+        $text = $this->apply_expiry_visibility( $text, $product->get_id(), $expiry_date );
+
+        if ( $text === '' ) {
+            return '';
         }
 
         return esc_html( $atts['before'] ) .

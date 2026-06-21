@@ -1,83 +1,267 @@
-.woope-settings h1 {
-    margin-bottom: 20px;
+/* =========================================================
+ * Product Expiry — Admin settings UI
+ * ========================================================= */
+
+.woope-settings {
+    max-width: 1240px;
 }
 
+/* ---- Two-column body (content + sticky upgrade aside) ---- */
+.woope-body {
+    display: block;
+}
+.woope-body.has-aside {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+.woope-content {
+    flex: 1;
+    min-width: 0;
+}
+.woope-aside {
+    width: 290px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 40px;
+}
+
+/* ---- Hero header ---- */
+.woope-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: linear-gradient(120deg, #4f2d8f 0%, #6f42c1 55%, #8b5cf6 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin: 16px 0 6px;
+    box-shadow: 0 6px 20px rgba(111, 66, 193, 0.25);
+}
+.woope-hero-main h1 {
+    color: #fff;
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.woope-hero-main p {
+    margin: 0;
+    max-width: 640px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+.woope-version {
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+.woope-hero-links .button {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+.woope-hero-links .button:hover {
+    background: rgba(255, 255, 255, 0.28);
+    color: #fff;
+}
+
+/* ---- Quick nav ---- */
+.woope-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 14px 0 18px;
+}
+.woope-nav a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #50575e;
+    padding: 7px 14px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #e2e4e7;
+    transition: all 0.15s ease;
+}
+.woope-nav a:hover {
+    background: #6f42c1;
+    border-color: #6f42c1;
+    color: #fff;
+}
+
+/* ---- Cards ---- */
 .woope-card {
     background: #fff;
-    border: 1px solid #ccd0d4;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 4px;
+    border: 1px solid #e2e4e7;
+    padding: 22px 26px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
-
-.woope-card h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
+.woope-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0 0 14px;
     font-size: 16px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    font-weight: 700;
+    border-bottom: 1px solid #f0f0f1;
 }
-
-.woope-card .form-table th {
-    width: 250px;
-    font-weight: 600;
+.woope-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #f3eefc;
+    font-size: 16px;
 }
-
-.woope-card .description {
-    color: #666;
+.woope-card-desc {
+    color: #646970;
     font-size: 13px;
+    margin: 12px 0 0;
+}
+.woope-card .form-table th {
+    width: 260px;
+    font-weight: 600;
+    color: #1d2327;
+    vertical-align: top;
+    padding-top: 18px;
+}
+.woope-card .form-table td {
+    padding-top: 14px;
+}
+.woope-card .description {
+    color: #646970;
+    font-size: 12.5px;
+    margin-top: 6px;
+}
+.woope-card input[type="text"],
+.woope-card input[type="number"],
+.woope-card select,
+.woope-card textarea {
+    border-radius: 6px;
+}
+.woope-card input[type="color"] {
+    width: 56px;
+    height: 34px;
+    padding: 2px;
+    vertical-align: middle;
+    border-radius: 6px;
+    border: 1px solid #8c8f94;
+    cursor: pointer;
+}
+.woope-custom-hook {
+    margin-top: 10px;
 }
 
+/* ---- Save bar ---- */
+.woope-save-bar {
+    position: sticky;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    border-top: 1px solid #e2e4e7;
+    padding: 14px 0;
+    margin-top: 6px;
+    z-index: 5;
+}
+
+/* ---- Pro badge ---- */
 .woope-pro-badge {
     background: #6f42c1;
     color: #fff;
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    border-radius: 20px;
     margin-left: 8px;
+    vertical-align: middle;
 }
 
-/* ---- Pro promo card ---- */
-.woope-pro-promo {
-    border-left: 4px solid #6f42c1;
-    background: linear-gradient(180deg, #faf7ff 0%, #fff 60%);
+/* ---- Upgrade banner (right sidebar) ---- */
+.woope-upsell {
+    background: #fff;
+    border: 1px solid #e7dcff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(111, 66, 193, 0.12);
 }
-.woope-pro-promo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 16px;
+.woope-upsell-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 20px;
+    background: linear-gradient(120deg, #4f2d8f 0%, #6f42c1 60%, #8b5cf6 100%);
+    color: #fff;
 }
-@media (max-width: 782px) { .woope-pro-promo-grid { grid-template-columns: 1fr; } }
-
-.woope-pro-promo-feature h3 { margin: 0 0 6px; font-size: 14px; }
-.woope-pro-promo-feature p  { margin: 0 0 12px; color: #555; }
-
-.woope-promo-cd {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 10px 14px; background: #fff;
-    border: 1px solid #e0e0e0; border-radius: 6px;
+.woope-upsell-head .woope-card-icon {
+    background: rgba(255, 255, 255, 0.18);
 }
-.woope-promo-cd-label { font-weight: 600; margin-right: 4px; }
-.woope-promo-cd-block {
-    display: inline-flex; flex-direction: column; align-items: center;
-    min-width: 38px; padding: 4px 8px;
-    background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;
-    line-height: 1.2;
+.woope-upsell-head h2 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
 }
-.woope-promo-cd-block b { font-weight: 700; font-size: 16px; }
-.woope-promo-cd-block i {
-    font-size: 9px; text-transform: uppercase;
-    color: #888; font-style: normal; letter-spacing: 0.04em;
+.woope-upsell-sub {
+    margin: 0;
+    padding: 16px 20px 4px;
+    font-weight: 600;
+    color: #1d2327;
 }
-
-.woope-promo-csv {
-    background: #1e1e1e; color: #a8e4a8;
-    padding: 10px 12px; border-radius: 4px;
-    font-family: ui-monospace, Menlo, Consolas, monospace;
-    font-size: 12px; line-height: 1.7;
+.woope-upsell-list {
+    margin: 0;
+    padding: 8px 20px 4px;
+    list-style: none;
 }
-.woope-promo-csv code {
+.woope-upsell-list li {
+    position: relative;
+    padding: 7px 0 7px 26px;
+    font-size: 13px;
+    color: #3c434a;
+    border-bottom: 1px solid #f3f0fa;
+}
+.woope-upsell-list li:last-child { border-bottom: none; }
+.woope-upsell-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    color: #6f42c1;
+    font-weight: 700;
+}
+.woope-upsell-btn {
     display: block;
-    color: inherit; background: transparent; padding: 0;
+    text-align: center;
+    margin: 14px 20px 8px;
+}
+.woope-upsell-link {
+    display: block;
+    text-align: center;
+    padding: 0 20px 18px;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: #6f42c1;
+}
+
+@media (max-width: 960px) {
+    .woope-body.has-aside { flex-direction: column; }
+    .woope-aside { width: 100%; position: static; }
+}
+@media (max-width: 782px) {
+    .woope-hero { flex-direction: column; align-items: flex-start; }
+    .woope-card .form-table th { width: auto; }
 }

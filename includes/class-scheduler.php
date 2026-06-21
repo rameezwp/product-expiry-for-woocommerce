@@ -28,6 +28,14 @@ class Scheduler {
             'woo_expiry_schedule_action',
             [ $post_id ]
         );
+
+        // Keep the cached "expired" flag in step with the (re)scheduled date.
+        // execute() flips it back to 'yes' when the event actually fires.
+        update_post_meta(
+            $post_id,
+            'woo_expiry_expired_flag',
+            $timestamp > time() ? 'no' : 'yes'
+        );
     }
 
     public function execute( $post_id ) {
@@ -47,6 +55,32 @@ class Scheduler {
             update_post_meta( $post_id, '_stock', 0 );
             update_post_meta( $post_id, '_stock_status', 'outofstock' );
             wp_set_post_terms( $post_id, 'outofstock', 'product_visibility', true );
+        }
+
+        if ( $action === 'reduce' ) {
+
+            // Lower the managed stock by the configured amount using WC CRUD so
+            // the product meta lookup table (and HPOS) stay in sync.
+            $product = wc_get_product( $post_id );
+
+            if ( $product && $product->managing_stock() ) {
+
+                $qty = (int) get_post_meta( $post_id, 'woo_expiry_reduce_qty', true );
+
+                if ( $qty > 0 ) {
+                    $current = (int) $product->get_stock_quantity();
+                    $product->set_stock_quantity( max( 0, $current - $qty ) );
+                    $product->save();
+                }
+            }
+        }
+
+        if ( $action === 'expired' ) {
+
+            // Keep the product published and visible; the badge + disabled
+            // add-to-cart are applied dynamically by woope_is_product_expired().
+            // The flag is a cache for queries/integrations, not load-bearing.
+            update_post_meta( $post_id, 'woo_expiry_expired_flag', 'yes' );
         }
 
         /*
@@ -151,13 +185,20 @@ class Scheduler {
             $body_template
         );
 
-        wp_mail(
+        $sent = wp_mail(
             $settings['notify_emails'],
             $subject,
             $message,
             $headers
         );
-    }    
+
+        woope_log_email(
+            $settings['notify_emails'],
+            $subject,
+            __( 'On-expiry (admin)', 'product-expiry-for-woocommerce' ),
+            $sent ? 'sent' : 'failed'
+        );
+    }
 
     private function resolve_expiry_timestamp( $date_string, $post_id ) {
 

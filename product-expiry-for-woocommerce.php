@@ -20,6 +20,9 @@ define( 'WOOPE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOOPE_URL', plugin_dir_url( __FILE__ ) );
 define( 'WOOPE_VERSION', '3.2' );
 
+// Shared top-level admin menu slug (Pro attaches its pages to this).
+define( 'WOOPE_MENU_SLUG', 'product-expiry' );
+
 require_once WOOPE_PATH . 'includes/class-plugin.php';
 
 function woope_init_plugin() {

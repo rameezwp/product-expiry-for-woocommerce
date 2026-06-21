@@ -5,12 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Admin {
 
+    /** @var string Hook suffix of the settings page, for asset loading. */
+    private $settings_hook = '';
+
     public function __construct() {
 
-        // Settings submenu
+        // Top-level menu + settings page (priority 9 so the parent exists
+        // before Pro / Email Log attach their submenus).
         add_action(
             'admin_menu',
-            [ $this, 'add_settings_page' ]
+            [ $this, 'add_settings_page' ],
+            9
         );
 
         // AJAX save
@@ -40,12 +45,26 @@ class Admin {
 
     public function add_settings_page() {
 
+        // Dedicated top-level "Product Expiry" menu. Visible to shop managers
+        // (manage_woocommerce) so Pro's dashboard/CSV/batch pages remain
+        // reachable; the Settings page itself stays admin-only below.
+        $this->settings_hook = add_menu_page(
+            __( 'Product Expiry', 'product-expiry-for-woocommerce' ),
+            __( 'Product Expiry', 'product-expiry-for-woocommerce' ),
+            'manage_woocommerce',
+            WOOPE_MENU_SLUG,
+            [ $this, 'render_settings_page' ],
+            'dashicons-clock',
+            56
+        );
+
+        // Rename the auto-created first item to "Settings" (admin-only).
         add_submenu_page(
-            'edit.php?post_type=product',
+            WOOPE_MENU_SLUG,
             __( 'Product Expiry Settings', 'product-expiry-for-woocommerce' ),
-            __( 'Expiry Settings', 'product-expiry-for-woocommerce' ),
+            __( 'Settings', 'product-expiry-for-woocommerce' ),
             'manage_options',
-            'products_expiry_settings',
+            WOOPE_MENU_SLUG,
             [ $this, 'render_settings_page' ]
         );
     }
@@ -98,6 +117,13 @@ class Admin {
             'orderdetails'       => sanitize_text_field( $_POST['orderdetails'] ?? '' ),
             'orderdetailsadmin'  => sanitize_text_field( $_POST['orderdetailsadmin'] ?? '' ),
             'markup'             => wp_kses_post( $_POST['markup'] ?? '' ),
+            'show_earliest_variation' => sanitize_text_field( $_POST['show_earliest_variation'] ?? 'disable' ),
+            'expired_date_display' => sanitize_text_field( $_POST['expired_date_display'] ?? 'show' ),
+            'expired_date_custom_text' => sanitize_text_field( $_POST['expired_date_custom_text'] ?? '' ),
+            'expired_badge_text' => sanitize_text_field( $_POST['expired_badge_text'] ?? '' ),
+            'expired_badge_color' => $this->sanitize_badge_color( $_POST['expired_badge_color'] ?? '' ),
+            'expired_badge_single_hook'  => sanitize_text_field( $_POST['expired_badge_single_hook'] ?? '' ),
+            'expired_badge_archive_hook' => sanitize_text_field( $_POST['expired_badge_archive_hook'] ?? '' ),
             'notify_on_expired'  => sanitize_text_field( $_REQUEST['notify_on_expired'] ?? 'enable' ),
             'notify_before_days' => sanitize_text_field( $_REQUEST['notify_before_days'] ?? '' ),
             'email_subject'      => sanitize_text_field( $_REQUEST['email_subject'] ?? '' ),
@@ -137,6 +163,24 @@ class Admin {
     }
 
     /* -------------------------------------------------------------
+     *  HELPERS
+     * ----------------------------------------------------------- */
+
+    /**
+     * Validate a hex colour, falling back to the default badge colour.
+     */
+    private function sanitize_badge_color( $color ) {
+
+        $color = is_string( $color ) ? trim( $color ) : '';
+
+        if ( preg_match( '/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/', $color ) ) {
+            return $color;
+        }
+
+        return '#d63638';
+    }
+
+    /* -------------------------------------------------------------
      *  ADMIN SCRIPTS
      * ----------------------------------------------------------- */
 
@@ -160,13 +204,16 @@ class Admin {
         }
 
         // Settings page
-        if ( $hook === 'product_page_products_expiry_settings' ) {
+        if ( $hook === $this->settings_hook ) {
             wp_enqueue_style(
                 'woope-admin-style',
                 WOOPE_URL . 'assets/css/admin.css',
                 [],
                 WOOPE_VERSION
             );
+
+            // Load admin-rtl.css automatically on RTL locales.
+            wp_style_add_data( 'woope-admin-style', 'rtl', 'replace' );
 
             wp_enqueue_script(
                 'sweetalert2',
@@ -203,9 +250,7 @@ class Admin {
 
         if ( strpos( $file, 'product-expiry-for-woocommerce.php' ) !== false ) {
 
-            $settings_url = admin_url(
-                'edit.php?post_type=product&page=products_expiry_settings'
-            );
+            $settings_url = menu_page_url( WOOPE_MENU_SLUG, false );
 
             $links[] = '<a href="' . esc_url( $settings_url ) . '">' .
                 __( 'Settings', 'product-expiry-for-woocommerce' ) .
