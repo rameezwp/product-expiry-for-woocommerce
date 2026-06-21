@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Woo Product Expiry\n"
-"POT-Creation-Date: 2026-04-22 10:47+0500\n"
+"POT-Creation-Date: 2026-06-21 10:28+0500\n"
 "PO-Revision-Date: 2021-06-11 10:09+0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,261 +21,396 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: admin/views/settings.php:10
+#: admin/views/settings.php:19
 msgid "Expiry Date: {expiry_date}"
 msgstr ""
 
-#: admin/views/settings.php:21
-msgid "Woo Product Expiry Settings"
+#: admin/views/settings.php:54
+msgid "Custom Hook Name…"
 msgstr ""
 
-#: admin/views/settings.php:27
-msgid "New in Product Expiry Pro 1.2"
+#: admin/views/settings.php:59
+msgid "Enter custom hook name"
 msgstr ""
 
-#: admin/views/settings.php:28
-msgid "PRO"
+#: admin/views/settings.php:69 includes/class-admin.php:52
+#: includes/class-admin.php:53 includes/class-product-meta.php:46
+msgid "Product Expiry"
 msgstr ""
 
-#: admin/views/settings.php:35
-msgid "Countdown Timer"
-msgstr ""
-
-#: admin/views/settings.php:36
+#: admin/views/settings.php:72
 msgid ""
-"Live day/hour/min/sec countdown on product pages. Three styles (blocks, "
-"badge, minimal), urgency colouring that shifts green → amber → red as "
-"expiry approaches, works on variable products."
+"Set expiry dates for products and variations, choose how they behave when "
+"they expire, and notify the right people at the right time."
 msgstr ""
 
-#: admin/views/settings.php:39
-msgid "Expires in:"
+#: admin/views/settings.php:75
+msgid "Documentation"
 msgstr ""
 
-#: admin/views/settings.php:49
-msgid "CSV Bulk Tools"
+#: admin/views/settings.php:81 admin/views/settings.php:98
+msgid "Frontend Display"
 msgstr ""
 
-#: admin/views/settings.php:50
+#: admin/views/settings.php:82 admin/views/settings.php:155
+msgid "Expired Products"
+msgstr ""
+
+#: admin/views/settings.php:83 admin/views/settings.php:210
+msgid "Orders & Emails"
+msgstr ""
+
+#: admin/views/settings.php:84
+msgid "Notifications"
+msgstr ""
+
+#: admin/views/settings.php:99
 msgid ""
-"Export every product and variation with expiry data to CSV. Edit in Excel. "
-"Re-import to bulk-update dates, times, notes and on-expiry actions — no "
-"SQL, no per-product clicks."
-msgstr ""
-
-#: admin/views/settings.php:65
-msgid "Upgrade to Pro"
-msgstr ""
-
-#: admin/views/settings.php:69
-msgid "Dismiss"
-msgstr ""
-
-#: admin/views/settings.php:82
-msgid "Display Settings"
-msgstr ""
-
-#: admin/views/settings.php:85
-msgid "Display on Frontend"
-msgstr ""
-
-#: admin/views/settings.php:88 admin/views/settings.php:190
-#: admin/views/settings.php:203 admin/views/settings.php:232
-msgid "Enable"
-msgstr ""
-
-#: admin/views/settings.php:89 admin/views/settings.php:191
-#: admin/views/settings.php:204 admin/views/settings.php:235
-msgid "Disable"
-msgstr ""
-
-#: admin/views/settings.php:93
-msgid "Display the expiry date on single product or shop pages"
-msgstr ""
-
-#: admin/views/settings.php:98
-msgid "Expiry Text Markup"
+"Control whether and where the expiry date appears to shoppers, and how it "
+"is written."
 msgstr ""
 
 #: admin/views/settings.php:103
-msgid "Provide text to show on frontend. Use {expiry_date} for expiry date"
+msgid "Show on Storefront"
 msgstr ""
 
-#: admin/views/settings.php:108
-msgid "Position on single product page"
+#: admin/views/settings.php:106 admin/views/settings.php:145
+#: admin/views/settings.php:218 admin/views/settings.php:228
+#: admin/views/settings.php:254
+msgid "Enable"
 msgstr ""
 
-#: admin/views/settings.php:121 admin/views/settings.php:152
-msgid "Custom Hook Name..."
+#: admin/views/settings.php:107 admin/views/settings.php:144
+#: admin/views/settings.php:219 admin/views/settings.php:229
+#: admin/views/settings.php:255
+msgid "Disable"
 msgstr ""
 
-#: admin/views/settings.php:132
-msgid "Choose where the expiry date appears on the main product page"
+#: admin/views/settings.php:109
+msgid "Display the expiry date on single product and shop/archive pages."
 msgstr ""
 
-#: admin/views/settings.php:138
-msgid "Position on shop archive page"
+#: admin/views/settings.php:113
+msgid "Expiry Text"
 msgstr ""
 
-#: admin/views/settings.php:163
+#: admin/views/settings.php:116
 msgid ""
-"Choose where the expiry date appears on your shop's main listing and "
-"category pages."
+"Text shown on the frontend. Use {expiry_date} where the date should appear."
 msgstr ""
 
-#: admin/views/settings.php:169
+#: admin/views/settings.php:120
 msgid "Date Format"
 msgstr ""
 
-#: admin/views/settings.php:177
+#: admin/views/settings.php:123
 #, php-format
 msgid ""
-"Enter how the date should appear (e.g., %1$s). Leave blank to use your "
-"WordPress default. <a href=\"%2$s\" target=\"_blank\">View formatting "
-"guide</a>."
+"How the date is formatted, e.g. %1$s. <a href=\"%2$s\" target=\"_blank"
+"\">Formatting guide</a>."
 msgstr ""
 
-#: admin/views/settings.php:187
-msgid "Display in Emails"
+#: admin/views/settings.php:127
+msgid "Position — Single Product"
+msgstr ""
+
+#: admin/views/settings.php:130
+msgid "Where the expiry date appears on the single product page."
+msgstr ""
+
+#: admin/views/settings.php:134
+msgid "Position — Shop / Archive"
+msgstr ""
+
+#: admin/views/settings.php:137
+msgid "Where the expiry date appears on shop and category listings."
+msgstr ""
+
+#: admin/views/settings.php:141
+msgid "Earliest Variation on Parent"
+msgstr ""
+
+#: admin/views/settings.php:147
+msgid ""
+"For variable products without their own date, show the soonest variation "
+"expiry on the parent. The variation’s own date still applies once selected."
+msgstr ""
+
+#: admin/views/settings.php:156
+msgid ""
+"What shoppers see after a product passes its expiry date, including the "
+"optional “Expired” badge used by the Mark as Expired action."
+msgstr ""
+
+#: admin/views/settings.php:160
+msgid "After Expiry, Show Date As"
+msgstr ""
+
+#: admin/views/settings.php:163
+msgid "Keep showing the date"
+msgstr ""
+
+#: admin/views/settings.php:164
+msgid "Hide the date"
+msgstr ""
+
+#: admin/views/settings.php:165
+msgid "Show custom text"
+msgstr ""
+
+#: admin/views/settings.php:167
+msgid ""
+"Once the expiry date/time has passed, choose what appears on single product "
+"and shop/archive pages. Applies to both."
+msgstr ""
+
+#: admin/views/settings.php:171
+msgid "Custom Expired Text"
+msgstr ""
+
+#: admin/views/settings.php:173
+msgid "e.g. This product has expired"
+msgstr ""
+
+#: admin/views/settings.php:174
+msgid ""
+"Shown in place of the date after expiry when “Show custom text” is selected."
+msgstr ""
+
+#: admin/views/settings.php:178
+msgid "Expired Badge Text"
+msgstr ""
+
+#: admin/views/settings.php:180 includes/class-expired.php:105
+msgid "Expired"
+msgstr ""
+
+#: admin/views/settings.php:181
+msgid ""
+"Badge label for products whose on-expiry action is “Mark as Expired”. Blank "
+"uses “Expired”."
+msgstr ""
+
+#: admin/views/settings.php:185
+msgid "Expired Badge Color"
+msgstr ""
+
+#: admin/views/settings.php:188
+msgid "Background colour of the “Expired” badge."
+msgstr ""
+
+#: admin/views/settings.php:192
+msgid "Badge Position — Single Product"
 msgstr ""
 
 #: admin/views/settings.php:195
-msgid "Display the expiry date in order details email."
+msgid "Where the “Expired” badge appears on the single product page."
 msgstr ""
 
-#: admin/views/settings.php:200
-msgid "Display in Order Details"
+#: admin/views/settings.php:199
+msgid "Badge Position — Shop / Archive"
 msgstr ""
 
-#: admin/views/settings.php:208
-msgid "Display the expiry date in order details admin and front."
+#: admin/views/settings.php:202
+msgid ""
+"Where the badge appears on shop/category pages. Pick “Custom” and leave "
+"blank to hide it on archives."
 msgstr ""
 
-#: admin/views/settings.php:216
-msgid "Notification Settings"
+#: admin/views/settings.php:211
+msgid "Show expiry information inside order details and order emails."
 msgstr ""
 
-#: admin/views/settings.php:219
-msgid "Notification Emails"
+#: admin/views/settings.php:215
+msgid "Show in Order Emails"
 msgstr ""
 
-#: admin/views/settings.php:224
-msgid "Provide comma separated email addresses for expiry notification."
+#: admin/views/settings.php:221
+msgid "Include the expiry date in WooCommerce order emails."
 msgstr ""
 
-#: admin/views/settings.php:228
-msgid "Send Email When Expired"
+#: admin/views/settings.php:225
+msgid "Show in Order Details"
+msgstr ""
+
+#: admin/views/settings.php:231
+msgid "Include the expiry date in order details (admin and customer view)."
+msgstr ""
+
+#: admin/views/settings.php:239
+msgid "Expiry Notifications"
 msgstr ""
 
 #: admin/views/settings.php:240
-msgid "Send notification email when product expires."
+msgid "Email store staff when products expire, and customise the message."
 msgstr ""
 
 #: admin/views/settings.php:244
-msgid "Email Subject"
+msgid "Notification Emails"
 msgstr ""
 
-#: admin/views/settings.php:252
-msgid "Available placeholders: {product_name}, {expiry_date}, {product_url}"
+#: admin/views/settings.php:247
+msgid "Comma-separated email addresses to notify when a product expires."
+msgstr ""
+
+#: admin/views/settings.php:251
+msgid "Send Email on Expiry"
 msgstr ""
 
 #: admin/views/settings.php:257
-msgid "Email Body Template"
+msgid "Send a notification email at the moment a product expires."
+msgstr ""
+
+#: admin/views/settings.php:261
+msgid "Email Subject"
 msgstr ""
 
 #: admin/views/settings.php:264
-msgid "Customize email message sent for expiry notification."
+msgid "Placeholders: {product_name}, {expiry_date}, {product_url}"
 msgstr ""
 
 #: admin/views/settings.php:268
+msgid "Email Body"
+msgstr ""
+
+#: admin/views/settings.php:271
+msgid "The message sent on expiry. Same placeholders as the subject."
+msgstr ""
+
+#: admin/views/settings.php:276
 msgid "Reminder Before Expiry (Days)"
 msgstr ""
 
-#: admin/views/settings.php:287
+#: admin/views/settings.php:277
+msgid "PRO"
+msgstr ""
+
+#: admin/views/settings.php:282
 #, php-format
 msgid ""
-"Send reminder email X days before expiry. Available in <strong>Pro version</"
-"strong>. <a href=\"%s\" target=\"_blank\">Learn more</a>"
+"Send reminder emails X days before expiry. Available in the <strong>Pro "
+"version</strong>. <a href=\"%s\" target=\"_blank\">Learn more</a>."
 msgstr ""
 
-#: admin/views/settings.php:291
-msgid "Send reminder email before days product expires."
+#: admin/views/settings.php:285
+msgid "Send an admin reminder this many days before products expire."
 msgstr ""
 
-#: admin/views/settings.php:301
+#: admin/views/settings.php:294
 msgid "Save Settings"
 msgstr ""
 
-#: includes/class-admin.php:45
+#: admin/views/settings.php:307
+msgid "Product Expiry Pro"
+msgstr ""
+
+#: admin/views/settings.php:309
+msgid "Unlock the full toolkit:"
+msgstr ""
+
+#: admin/views/settings.php:311
+msgid "Live countdown timers"
+msgstr ""
+
+#: admin/views/settings.php:312
+msgid "Exact expiry time (HH:MM)"
+msgstr ""
+
+#: admin/views/settings.php:313
+msgid "Customer pre-expiry reminders"
+msgstr ""
+
+#: admin/views/settings.php:314
+msgid "Auto-discount before expiry"
+msgstr ""
+
+#: admin/views/settings.php:315
+msgid "Batch / lot tracking with FEFO"
+msgstr ""
+
+#: admin/views/settings.php:316
+msgid "CSV bulk import / export"
+msgstr ""
+
+#: admin/views/settings.php:317
+msgid "Premium expiry dashboard"
+msgstr ""
+
+#: admin/views/settings.php:319
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: admin/views/settings.php:320
+msgid "See all features"
+msgstr ""
+
+#: includes/class-admin.php:64
 msgid "Product Expiry Settings"
 msgstr ""
 
-#: includes/class-admin.php:46
-msgid "Expiry Settings"
+#: includes/class-admin.php:65 includes/class-admin.php:256
+msgid "Settings"
 msgstr ""
 
-#: includes/class-admin.php:56
+#: includes/class-admin.php:75
 msgid "Inside Summary (Default)"
 msgstr ""
 
-#: includes/class-admin.php:57
+#: includes/class-admin.php:76
 msgid "Before Summary (Above Image)"
 msgstr ""
 
-#: includes/class-admin.php:58
+#: includes/class-admin.php:77
 msgid "After Summary (Below Tabs)"
 msgstr ""
 
-#: includes/class-admin.php:59
+#: includes/class-admin.php:78
 msgid "Product Meta Start"
 msgstr ""
 
-#: includes/class-admin.php:60
+#: includes/class-admin.php:79
 msgid "Product Meta End"
 msgstr ""
 
-#: includes/class-admin.php:61
+#: includes/class-admin.php:80
 msgid "Before Add to Cart Form"
 msgstr ""
 
-#: includes/class-admin.php:62
+#: includes/class-admin.php:81
 msgid "After Add to Cart Form"
 msgstr ""
 
-#: includes/class-admin.php:66
+#: includes/class-admin.php:85
 msgid "After Title (Default)"
 msgstr ""
 
-#: includes/class-admin.php:67
+#: includes/class-admin.php:86
 msgid "Before Title"
 msgstr ""
 
-#: includes/class-admin.php:68
+#: includes/class-admin.php:87
 msgid "After Product Link"
 msgstr ""
 
-#: includes/class-admin.php:69
+#: includes/class-admin.php:88
 msgid "Inside Title Hook"
 msgstr ""
 
-#: includes/class-admin.php:89
+#: includes/class-admin.php:108 includes/class-email-log.php:179
+#: includes/class-email-log.php:196
 msgid "Security check failed."
 msgstr ""
 
-#: includes/class-admin.php:126
+#: includes/class-admin.php:152
 msgid "Settings saved successfully!"
 msgstr ""
 
-#: includes/class-admin.php:132
+#: includes/class-admin.php:158
 msgid "No changes detected, but settings are up to date."
 msgstr ""
 
-#: includes/class-admin.php:134
+#: includes/class-admin.php:160
 msgid "Failed to save settings. Please try again."
-msgstr ""
-
-#: includes/class-admin.php:211
-msgid "Settings"
 msgstr ""
 
 #: includes/class-columns.php:58
@@ -299,18 +434,90 @@ msgid "Exp Action"
 msgstr ""
 
 #: includes/class-columns.php:204 includes/class-product-meta.php:108
-#: includes/class-product-meta.php:187
+#: includes/class-product-meta.php:198
 msgid "Nothing"
 msgstr ""
 
 #: includes/class-columns.php:207 includes/class-product-meta.php:109
-#: includes/class-product-meta.php:188
+#: includes/class-product-meta.php:199
 msgid "Make it Draft"
 msgstr ""
 
 #: includes/class-columns.php:210 includes/class-product-meta.php:110
-#: includes/class-product-meta.php:189
+#: includes/class-product-meta.php:200
 msgid "Out of stock"
+msgstr ""
+
+#: includes/class-columns.php:213 includes/class-product-meta.php:111
+#: includes/class-product-meta.php:201
+msgid "Reduce stock by amount"
+msgstr ""
+
+#: includes/class-columns.php:216
+msgid "Mark as Expired"
+msgstr ""
+
+#: includes/class-email-log.php:97 includes/class-email-log.php:114
+msgid "Expiry Email Log"
+msgstr ""
+
+#: includes/class-email-log.php:98
+msgid "Email Log"
+msgstr ""
+
+#: includes/class-email-log.php:115
+msgid ""
+"Emails sent by the plugin over the last 30 days (on-expiry notifications "
+"and, with Pro, pre-expiry reminders)."
+msgstr ""
+
+#: includes/class-email-log.php:120
+msgid "Clear the entire email log?"
+msgstr ""
+
+#: includes/class-email-log.php:121
+msgid "Clear Log"
+msgstr ""
+
+#: includes/class-email-log.php:129
+msgid "Date / Time"
+msgstr ""
+
+#: includes/class-email-log.php:130
+msgid "Recipient"
+msgstr ""
+
+#: includes/class-email-log.php:131
+msgid "Subject"
+msgstr ""
+
+#: includes/class-email-log.php:132
+msgid "Type"
+msgstr ""
+
+#: includes/class-email-log.php:133
+msgid "Status"
+msgstr ""
+
+#: includes/class-email-log.php:134 includes/class-product-meta.php:106
+#: includes/class-product-meta.php:195
+msgid "Action"
+msgstr ""
+
+#: includes/class-email-log.php:139
+msgid "No emails logged yet."
+msgstr ""
+
+#: includes/class-email-log.php:156
+msgid "Failed"
+msgstr ""
+
+#: includes/class-email-log.php:156
+msgid "Sent"
+msgstr ""
+
+#: includes/class-email-log.php:159
+msgid "Delete"
 msgstr ""
 
 #: includes/class-filter.php:38
@@ -318,30 +525,34 @@ msgid "Filter by Expiry"
 msgstr ""
 
 #: includes/class-filter.php:41
-msgid "Expiring this Month"
+msgid "Expiring within 7 Days"
 msgstr ""
 
 #: includes/class-filter.php:44
-msgid "Expiring next Month"
+msgid "Expiring within 30 Days"
 msgstr ""
 
 #: includes/class-filter.php:47
-msgid "Expiring within 3 Months"
+msgid "Expiring this Month"
 msgstr ""
 
 #: includes/class-filter.php:50
-msgid "Expiring within 6 Months"
+msgid "Expiring next Month"
 msgstr ""
 
 #: includes/class-filter.php:53
+msgid "Expiring within 3 Months"
+msgstr ""
+
+#: includes/class-filter.php:56
+msgid "Expiring within 6 Months"
+msgstr ""
+
+#: includes/class-filter.php:59
 msgid "Already Expired"
 msgstr ""
 
-#: includes/class-product-meta.php:46
-msgid "Product Expiry"
-msgstr ""
-
-#: includes/class-product-meta.php:66 includes/class-product-meta.php:139
+#: includes/class-product-meta.php:66 includes/class-product-meta.php:150
 msgid "Expiry Date"
 msgstr ""
 
@@ -351,18 +562,18 @@ msgid ""
 "site timezone."
 msgstr ""
 
-#: includes/class-product-meta.php:78 includes/class-product-meta.php:153
+#: includes/class-product-meta.php:78 includes/class-product-meta.php:164
 msgid "Expiry Time"
 msgstr ""
 
-#: includes/class-product-meta.php:85 includes/class-product-meta.php:161
+#: includes/class-product-meta.php:85 includes/class-product-meta.php:172
 #, php-format
 msgid ""
 "Set exact expiry time. Available in <strong>Pro version</strong>. <a href="
 "\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: includes/class-product-meta.php:98 includes/class-product-meta.php:174
+#: includes/class-product-meta.php:98 includes/class-product-meta.php:185
 msgid "Expiry Note (Optional)"
 msgstr ""
 
@@ -370,24 +581,42 @@ msgstr ""
 msgid "Provide text to display instead of the expiry date."
 msgstr ""
 
-#: includes/class-product-meta.php:106 includes/class-product-meta.php:184
-msgid "Action"
+#: includes/class-product-meta.php:112 includes/class-product-meta.php:202
+msgid "Mark as Expired (badge + disable purchase)"
 msgstr ""
 
-#: includes/class-product-meta.php:113
+#: includes/class-product-meta.php:115
 msgid "What to do when this product expires?"
 msgstr ""
 
-#: includes/class-product-meta.php:143
+#: includes/class-product-meta.php:120 includes/class-product-meta.php:211
+msgid "Reduce Stock By"
+msgstr ""
+
+#: includes/class-product-meta.php:123
+msgid ""
+"Used only with the \"Reduce stock by amount\" action: lower the managed "
+"stock quantity by this amount on expiry."
+msgstr ""
+
+#: includes/class-product-meta.php:154
 msgid "Provide expiry date (YYYY-MM-DD)"
 msgstr ""
 
-#: includes/class-product-meta.php:178
+#: includes/class-product-meta.php:189
 msgid "Provide text instead of expiry date"
 msgstr ""
 
-#: includes/class-product-meta.php:192
+#: includes/class-product-meta.php:205
 msgid "What to do when this variation expires?"
+msgstr ""
+
+#: includes/class-product-meta.php:215
+msgid "Used only with the \"Reduce stock by amount\" action."
+msgstr ""
+
+#: includes/class-scheduler.php:198
+msgid "On-expiry (admin)"
 msgstr ""
 
 #: includes/class-settings.php:19

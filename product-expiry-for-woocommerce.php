@@ -3,7 +3,7 @@
  * Plugin Name: Product Expiry for WooCommerce
  * Plugin URI: https://webcodingplace.com/product-expiry-for-woocommerce/
  * Description: Provide expiry date for your products and get notified before expire
- * Version: 3.2
+ * Version: 3.3
  * Author: WebCodingPlace
  * Author URI: https://webcodingplace.com/
  * License: GPLv2 or later
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'WOOPE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOOPE_URL', plugin_dir_url( __FILE__ ) );
-define( 'WOOPE_VERSION', '3.2' );
+define( 'WOOPE_VERSION', '3.3' );
 
 // Shared top-level admin menu slug (Pro attaches its pages to this).
 define( 'WOOPE_MENU_SLUG', 'product-expiry' );
