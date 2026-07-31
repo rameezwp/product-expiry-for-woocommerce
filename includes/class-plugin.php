@@ -38,6 +38,7 @@ class Plugin {
         require_once WOOPE_PATH . 'includes/class-multilingual.php';
         require_once WOOPE_PATH . 'includes/class-expired.php';
         require_once WOOPE_PATH . 'includes/class-email-log.php';
+        require_once WOOPE_PATH . 'includes/class-dashboard-widget.php';
     }
 
     private function init_modules() {
@@ -53,6 +54,7 @@ class Plugin {
         new Multilingual();
         new Expired_Status();
         new Email_Log();
+        new Dashboard_Widget();
     }
 
     private function load_textdomain() {

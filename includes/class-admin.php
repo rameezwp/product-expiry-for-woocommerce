@@ -71,6 +71,20 @@ class Admin {
 
     public function render_settings_page() {
 
+        // The top-level "Product Expiry" menu is registered with
+        // manage_woocommerce so shop managers can reach the shared menu (and,
+        // with Pro active, its dashboard / CSV / batch pages). The Settings
+        // screen itself exposes staff notification recipients and email
+        // templates, so it must stay restricted to full administrators.
+        // Guard the view explicitly here rather than relying on the Settings
+        // submenu capability alone, which does not cover the top-level slug.
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_die(
+                esc_html__( 'Sorry, you are not allowed to access this page.', 'product-expiry-for-woocommerce' ),
+                403
+            );
+        }
+
         $common_single_hooks = array(
             'woocommerce_single_product_summary' => __( 'Inside Summary (Default)', 'product-expiry-for-woocommerce' ),
             'woocommerce_before_single_product_summary' => __( 'Before Summary (Above Image)', 'product-expiry-for-woocommerce' ),

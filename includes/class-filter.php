@@ -136,6 +136,7 @@ class Filter_Admin {
                 FROM {$wpdb->postmeta} pm
                 INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
                 WHERE pm.meta_key = 'woo_expiry_date'
+                AND pm.meta_value <> ''
                 AND pm.meta_value <= %s
                 AND p.post_type = 'product'
                 AND p.post_status IN ( 'publish', 'draft' )
@@ -164,6 +165,7 @@ class Filter_Admin {
                 FROM {$wpdb->postmeta} pm
                 INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
                 WHERE pm.meta_key = 'woo_expiry_date'
+                AND pm.meta_value <> ''
                 AND pm.meta_value <= %s
                 AND p.post_type = 'product_variation'
                 AND p.post_status IN ( 'publish', 'draft' )
