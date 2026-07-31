@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.2
 Requires Plugins: woocommerce
-Stable tag: 3.3
+Stable tag: 3.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -43,7 +43,7 @@ Show the expiry date inside order details for both you and your customer, and in
 
 = Manage everything from the products list =
 
-A sortable Expiry column shows dates right in the products table, with a per variation breakdown for variable products. Quick edit the date, note, and action without opening the product. Filter the list to find what needs attention: within 7 days, within 30 days, this month, next month, within 3 months, within 6 months, or already expired. There is also an Email Log of the last 30 days of plugin emails, showing recipient, subject, type, and whether each one sent or failed.
+A sortable Expiry column shows dates right in the products table, with a per variation breakdown for variable products. Quick edit the date, note, and action without opening the product. Filter the list to find what needs attention: within 7 days, within 30 days, this month, next month, within 3 months, within 6 months, or already expired. A Product Expiry Overview widget on your WordPress dashboard sums up what is already expired and what is expiring in the next 7 and 30 days, with one click through to the matching filtered list. There is also an Email Log of the last 30 days of plugin emails, showing recipient, subject, type, and whether each one sent or failed.
 
 = Built to fit your store =
 
@@ -134,6 +134,12 @@ The plugin removes its options and scheduled events on uninstall, so you are not
 5. Expiry date inside an order email
 
 == Changelog ==
+
+= 3.4 =
+
+* Feature Added: Product Expiry Overview dashboard widget with at a glance counts of expired, expiring within 7 days, and expiring within 30 days, each linking to the filtered products list
+* Security Fixed: Restrict the Settings screen to administrators (manage_options) so it can no longer be opened by shop manager level users
+* Bug Fixed: "Already Expired" filter no longer counts products that have no expiry date set
 
 = 3.3 =
 
@@ -250,6 +256,9 @@ The plugin removes its options and scheduled events on uninstall, so you are not
 * Initial release
 
 == Upgrade Notice ==
+
+= 3.4 =
+Adds a Product Expiry Overview dashboard widget, tightens the Settings screen to administrators only, and fixes the Already Expired filter. Recommended security update with no breaking changes.
 
 = 3.3 =
 Adds new on expiry actions (reduce stock, mark as expired), an email log, faster 7 and 30 day filters, and WPML, Polylang, and RTL support. Safe update with no breaking changes.
