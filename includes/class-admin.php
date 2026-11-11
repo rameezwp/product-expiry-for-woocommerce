@@ -45,12 +45,21 @@ class Admin {
 
     public function add_settings_page() {
 
+        // Append a count bubble (like plugin-update badges) when products are
+        // currently expired, so staff notice without opening the list.
+        $menu_title = __( 'Product Expiry', 'product-expiry-for-woocommerce' );
+        $expired    = Dashboard_Widget::expired_count();
+        if ( $expired > 0 ) {
+            $menu_title .= ' <span class="awaiting-mod"><span class="pending-count">'
+                . esc_html( number_format_i18n( $expired ) ) . '</span></span>';
+        }
+
         // Dedicated top-level "Product Expiry" menu. Visible to shop managers
         // (manage_woocommerce) so Pro's dashboard/CSV/batch pages remain
         // reachable; the Settings page itself stays admin-only below.
         $this->settings_hook = add_menu_page(
             __( 'Product Expiry', 'product-expiry-for-woocommerce' ),
-            __( 'Product Expiry', 'product-expiry-for-woocommerce' ),
+            $menu_title,
             'manage_woocommerce',
             WOOPE_MENU_SLUG,
             [ $this, 'render_settings_page' ],

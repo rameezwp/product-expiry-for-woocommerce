@@ -195,9 +195,14 @@ class Frontend {
         $atts = shortcode_atts([
             'before' => '',
             'after'  => '',
+            'id'     => '',
         ], $atts );
 
-        $product = wc_get_product();
+        // Allow [expiry_date id="123"] to work anywhere, not only on a product.
+        $product = ! empty( $atts['id'] )
+            ? wc_get_product( absint( $atts['id'] ) )
+            : wc_get_product();
+
         if ( ! $product ) {
             return '';
         }

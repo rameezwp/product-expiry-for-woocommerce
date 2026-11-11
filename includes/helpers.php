@@ -36,6 +36,30 @@ function woope_format_expiry_text( $date, $product_id = null ) {
     // Replace placeholder with real formatted date
     $markup = str_replace( '{expiry_date}', $formatted_date, $markup );
 
+    // Optional {days_left} token — human-readable time until expiry.
+    if ( strpos( $markup, '{days_left}' ) !== false ) {
+
+        $days_left_text = '';
+        $exp = \DateTime::createFromFormat( 'Y-m-d', substr( (string) $date, 0, 10 ) );
+
+        if ( $exp ) {
+            $exp->setTime( 0, 0, 0 );
+            $today = new \DateTime( current_time( 'Y-m-d' ) );
+            $diff  = (int) $today->diff( $exp )->format( '%r%a' );
+
+            if ( $diff < 0 ) {
+                $days_left_text = __( 'expired', 'product-expiry-for-woocommerce' );
+            } elseif ( $diff === 0 ) {
+                $days_left_text = __( 'today', 'product-expiry-for-woocommerce' );
+            } else {
+                /* translators: %d: number of days. */
+                $days_left_text = sprintf( _n( '%d day', '%d days', $diff, 'product-expiry-for-woocommerce' ), $diff );
+            }
+        }
+
+        $markup = str_replace( '{days_left}', $days_left_text, $markup );
+    }
+
     /*
      * Allow developers / Pro version to modify final markup
      */
