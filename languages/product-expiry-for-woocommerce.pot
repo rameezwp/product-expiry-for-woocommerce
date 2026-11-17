@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Woo Product Expiry\n"
-"POT-Creation-Date: 2026-06-21 10:28+0500\n"
+"POT-Creation-Date: 2026-07-31 11:45+0500\n"
 "PO-Revision-Date: 2021-06-11 10:09+0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -348,68 +348,72 @@ msgstr ""
 msgid "Product Expiry Settings"
 msgstr ""
 
-#: includes/class-admin.php:65 includes/class-admin.php:256
+#: includes/class-admin.php:65 includes/class-admin.php:270
 msgid "Settings"
 msgstr ""
 
-#: includes/class-admin.php:75
+#: includes/class-admin.php:83
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: includes/class-admin.php:89
 msgid "Inside Summary (Default)"
 msgstr ""
 
-#: includes/class-admin.php:76
+#: includes/class-admin.php:90
 msgid "Before Summary (Above Image)"
 msgstr ""
 
-#: includes/class-admin.php:77
+#: includes/class-admin.php:91
 msgid "After Summary (Below Tabs)"
 msgstr ""
 
-#: includes/class-admin.php:78
+#: includes/class-admin.php:92
 msgid "Product Meta Start"
 msgstr ""
 
-#: includes/class-admin.php:79
+#: includes/class-admin.php:93
 msgid "Product Meta End"
 msgstr ""
 
-#: includes/class-admin.php:80
+#: includes/class-admin.php:94
 msgid "Before Add to Cart Form"
 msgstr ""
 
-#: includes/class-admin.php:81
+#: includes/class-admin.php:95
 msgid "After Add to Cart Form"
 msgstr ""
 
-#: includes/class-admin.php:85
+#: includes/class-admin.php:99
 msgid "After Title (Default)"
 msgstr ""
 
-#: includes/class-admin.php:86
+#: includes/class-admin.php:100
 msgid "Before Title"
 msgstr ""
 
-#: includes/class-admin.php:87
+#: includes/class-admin.php:101
 msgid "After Product Link"
 msgstr ""
 
-#: includes/class-admin.php:88
+#: includes/class-admin.php:102
 msgid "Inside Title Hook"
 msgstr ""
 
-#: includes/class-admin.php:108 includes/class-email-log.php:179
+#: includes/class-admin.php:122 includes/class-email-log.php:179
 #: includes/class-email-log.php:196
 msgid "Security check failed."
 msgstr ""
 
-#: includes/class-admin.php:152
+#: includes/class-admin.php:166
 msgid "Settings saved successfully!"
 msgstr ""
 
-#: includes/class-admin.php:158
+#: includes/class-admin.php:172
 msgid "No changes detected, but settings are up to date."
 msgstr ""
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:174
 msgid "Failed to save settings. Please try again."
 msgstr ""
 
@@ -455,6 +459,32 @@ msgstr ""
 
 #: includes/class-columns.php:216
 msgid "Mark as Expired"
+msgstr ""
+
+#: includes/class-dashboard-widget.php:48
+msgid "Product Expiry Overview"
+msgstr ""
+
+#: includes/class-dashboard-widget.php:63
+msgid "Already expired"
+msgstr ""
+
+#: includes/class-dashboard-widget.php:69
+msgid "Expiring within 7 days"
+msgstr ""
+
+#: includes/class-dashboard-widget.php:75
+msgid "Expiring within 30 days"
+msgstr ""
+
+#. translators: %s: link to the Product Expiry settings screen.
+#: includes/class-dashboard-widget.php:113
+#, php-format
+msgid "Manage how expiry behaves in %s."
+msgstr ""
+
+#: includes/class-dashboard-widget.php:115
+msgid "Product Expiry settings"
 msgstr ""
 
 #: includes/class-email-log.php:97 includes/class-email-log.php:114
