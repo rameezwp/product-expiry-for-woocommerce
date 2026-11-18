@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class Dashboard_Widget {
 
-    const TRANSIENT = 'woope_expiry_overview_counts';
+    const TRANSIENT       = 'woope_expiry_overview_counts';
+    const BADGE_TRANSIENT = 'woope_expired_badge_count';
 
     public function __construct() {
 
@@ -140,9 +141,9 @@ class Dashboard_Widget {
         $today = current_time( 'Y-m-d' );
 
         $counts = [
-            'expired'   => $this->count_expired( $today ),
-            'within_7'  => $this->count_between( $today, gmdate( 'Y-m-d', strtotime( $today . ' +7 days' ) ) ),
-            'within_30' => $this->count_between( $today, gmdate( 'Y-m-d', strtotime( $today . ' +30 days' ) ) ),
+            'expired'   => self::count_expired( $today ),
+            'within_7'  => self::count_between( $today, gmdate( 'Y-m-d', strtotime( $today . ' +7 days' ) ) ),
+            'within_30' => self::count_between( $today, gmdate( 'Y-m-d', strtotime( $today . ' +30 days' ) ) ),
         ];
 
         set_transient( self::TRANSIENT, $counts, HOUR_IN_SECONDS );
@@ -151,11 +152,35 @@ class Dashboard_Widget {
     }
 
     /**
+     * Number of currently-expired products, for the admin menu badge.
+     * Reuses the overview transient when warm; otherwise caches its own.
+     *
+     * @return int
+     */
+    public static function expired_count() {
+
+        $cached = get_transient( self::TRANSIENT );
+        if ( is_array( $cached ) && isset( $cached['expired'] ) ) {
+            return (int) $cached['expired'];
+        }
+
+        $badge = get_transient( self::BADGE_TRANSIENT );
+        if ( $badge !== false ) {
+            return (int) $badge;
+        }
+
+        $count = self::count_expired( current_time( 'Y-m-d' ) );
+        set_transient( self::BADGE_TRANSIENT, $count, HOUR_IN_SECONDS );
+
+        return $count;
+    }
+
+    /**
      * Count distinct products (simple + variable parents) with an expiry date
      * on or before $today. Mirrors the "Already Expired" admin filter, minus
      * the empty-date rows that a plain string comparison would otherwise match.
      */
-    private function count_expired( $today ) {
+    private static function count_expired( $today ) {
 
         global $wpdb;
 
@@ -189,7 +214,7 @@ class Dashboard_Widget {
      * expiry date falls between $start and $end (inclusive). Mirrors the
      * "Expiring within N days" admin filters.
      */
-    private function count_between( $start, $end ) {
+    private static function count_between( $start, $end ) {
 
         global $wpdb;
 
@@ -222,5 +247,6 @@ class Dashboard_Widget {
 
     public function clear_cache() {
         delete_transient( self::TRANSIENT );
+        delete_transient( self::BADGE_TRANSIENT );
     }
 }

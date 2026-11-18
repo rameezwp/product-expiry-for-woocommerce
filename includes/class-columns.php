@@ -64,6 +64,43 @@ class Columns {
      *  RENDER COLUMN
      * ----------------------------------------------------------- */
 
+    /**
+     * A small coloured "days left" badge for the Exp column.
+     * Red = expired/today, amber = within 7 days, blue = later.
+     *
+     * @param string $expiry_date Raw Y-m-d expiry date.
+     * @return string HTML (safe) or '' if the date can't be parsed.
+     */
+    private function days_left_badge( $expiry_date ) {
+
+        $exp = \DateTime::createFromFormat( 'Y-m-d', substr( (string) $expiry_date, 0, 10 ) );
+        if ( ! $exp ) {
+            return '';
+        }
+        $exp->setTime( 0, 0, 0 );
+
+        $today = new \DateTime( current_time( 'Y-m-d' ) );
+        $diff  = (int) $today->diff( $exp )->format( '%r%a' );
+
+        if ( $diff < 0 ) {
+            $days  = abs( $diff );
+            $color = '#d63638';
+            /* translators: %d: number of days. */
+            $label = sprintf( _n( 'expired %d day ago', 'expired %d days ago', $days, 'product-expiry-for-woocommerce' ), $days );
+        } elseif ( $diff === 0 ) {
+            $color = '#d63638';
+            $label = __( 'expires today', 'product-expiry-for-woocommerce' );
+        } else {
+            $color = $diff <= 7 ? '#dba617' : '#2271b1';
+            /* translators: %d: number of days. */
+            $label = sprintf( _n( 'in %d day', 'in %d days', $diff, 'product-expiry-for-woocommerce' ), $diff );
+        }
+
+        return ' <span class="woope-days-left" style="display:inline-block;margin-top:3px;padding:1px 7px;'
+            . 'border-radius:9px;font-size:11px;line-height:1.6;color:#fff;background:' . esc_attr( $color ) . ';">'
+            . esc_html( $label ) . '</span>';
+    }
+
     public function render_column( $column, $post_id ) {
 
         if ( $column !== 'woope_tab' ) {
@@ -92,6 +129,7 @@ class Columns {
                       data-expdate="' . esc_attr( $expiry_date ) . '">
                     ' . esc_html( $formatted ) . '
                 </span>
+                ' . $this->days_left_badge( $expiry_date ) . '
             </div>';
 
         } else {

@@ -316,7 +316,38 @@ $render_hook_picker = function( $field_name, $current, $hooks, $is_custom, $targ
                 <li><?php esc_html_e( 'CSV bulk import / export', 'product-expiry-for-woocommerce' ); ?></li>
                 <li><?php esc_html_e( 'Premium expiry dashboard', 'product-expiry-for-woocommerce' ); ?></li>
             </ul>
-            <a href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=upgrade" target="_blank" rel="noopener" class="button button-primary button-hero woope-upsell-btn"><?php esc_html_e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' ); ?> →</a>
+
+            <?php
+            $woope_promo_code     = defined( 'WOOPE_PROMO_CODE' ) ? WOOPE_PROMO_CODE : '';
+            $woope_promo_discount = defined( 'WOOPE_PROMO_DISCOUNT' ) ? WOOPE_PROMO_DISCOUNT : '50%';
+            $woope_promo_url      = defined( 'WOOPE_PROMO_URL' ) ? WOOPE_PROMO_URL : 'https://webcodingplace.com/product-expiry-for-woocommerce/';
+            if ( $woope_promo_code ) :
+            ?>
+            <div class="woope-coupon">
+                <div class="woope-coupon-head">
+                    <?php
+                    /* translators: %s: discount amount, e.g. 50%. */
+                    printf( esc_html__( 'Save %s on Pro', 'product-expiry-for-woocommerce' ), esc_html( $woope_promo_discount ) );
+                    ?>
+                </div>
+                <p class="woope-coupon-sub"><?php esc_html_e( 'Use this coupon at checkout:', 'product-expiry-for-woocommerce' ); ?></p>
+                <button type="button" class="woope-coupon-code" data-code="<?php echo esc_attr( $woope_promo_code ); ?>" title="<?php esc_attr_e( 'Click to copy', 'product-expiry-for-woocommerce' ); ?>">
+                    <span class="woope-coupon-value"><?php echo esc_html( $woope_promo_code ); ?></span>
+                    <span class="woope-coupon-copy"><?php esc_html_e( 'Copy', 'product-expiry-for-woocommerce' ); ?></span>
+                </button>
+            </div>
+            <?php endif; ?>
+
+            <a href="<?php echo esc_url( $woope_promo_url ); ?>" target="_blank" rel="noopener" class="button button-primary button-hero woope-upsell-btn">
+                <?php
+                if ( $woope_promo_code ) {
+                    /* translators: %s: discount amount, e.g. 50%. */
+                    printf( esc_html__( 'Get Pro %s Off', 'product-expiry-for-woocommerce' ), esc_html( $woope_promo_discount ) );
+                } else {
+                    esc_html_e( 'Upgrade to Pro', 'product-expiry-for-woocommerce' );
+                }
+                ?> →
+            </a>
             <a class="woope-upsell-link" href="https://webcodingplace.com/product-expiry-for-woocommerce/?utm_source=free-plugin&utm_medium=settings&utm_campaign=learn-more" target="_blank" rel="noopener"><?php esc_html_e( 'See all features', 'product-expiry-for-woocommerce' ); ?></a>
         </div>
     </aside>

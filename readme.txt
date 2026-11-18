@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.2
 Requires Plugins: woocommerce
-Stable tag: 3.4
+Stable tag: 3.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -134,6 +134,13 @@ The plugin removes its options and scheduled events on uninstall, so you are not
 5. Expiry date inside an order email
 
 == Changelog ==
+
+= 3.5 =
+
+* Feature Added: Limited-time offer — get Product Expiry Pro at 50% off with a coupon code, shown in the settings upgrade panel (one-click copy)
+* Feature Added: "Days left" indicator with colour coding (expired / within 7 days / later) in the product list expiry column
+* Feature Added: Expired-product count badge on the "Product Expiry" admin menu
+* Feature Added: The [expiry_date] shortcode now accepts an id attribute, e.g. [expiry_date id="123"], so it works anywhere; new {days_left} token for the expiry text
 
 = 3.4 =
 
