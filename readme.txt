@@ -137,7 +137,6 @@ The plugin removes its options and scheduled events on uninstall, so you are not
 
 = 3.5 =
 
-* Feature Added: Limited-time offer — get Product Expiry Pro at 50% off with a coupon code, shown in the settings upgrade panel (one-click copy)
 * Feature Added: "Days left" indicator with colour coding (expired / within 7 days / later) in the product list expiry column
 * Feature Added: Expired-product count badge on the "Product Expiry" admin menu
 * Feature Added: The [expiry_date] shortcode now accepts an id attribute, e.g. [expiry_date id="123"], so it works anywhere; new {days_left} token for the expiry text
