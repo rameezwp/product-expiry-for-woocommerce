@@ -23,13 +23,8 @@ define( 'WOOPE_VERSION', '3.5' );
 // Shared top-level admin menu slug (Pro attaches its pages to this).
 define( 'WOOPE_MENU_SLUG', 'product-expiry' );
 
-/*
- * Upgrade promo — shown in the Pro upsell banner on the settings page.
- * TODO: replace WOOPE_PROMO_CODE / WOOPE_PROMO_URL with the real coupon
- * code and checkout URL before release.
- */
 if ( ! defined( 'WOOPE_PROMO_CODE' ) ) {
-    define( 'WOOPE_PROMO_CODE', 'SAVE50' );      // placeholder — confirm real code
+    define( 'WOOPE_PROMO_CODE', 'SAVE50' );
 }
 if ( ! defined( 'WOOPE_PROMO_DISCOUNT' ) ) {
     define( 'WOOPE_PROMO_DISCOUNT', '50%' );
