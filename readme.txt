@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.2
 Requires Plugins: woocommerce
-Stable tag: 3.5
+Stable tag: 3.5.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -134,6 +134,10 @@ The plugin removes its options and scheduled events on uninstall, so you are not
 5. Expiry date inside an order email
 
 == Changelog ==
+
+= 3.5.1 =
+
+* Improvement: Added an "Admin Menu Badge" setting (Expiry Settings → Expired Products) to show or hide the red expired-count bubble on the Product Expiry menu. Defaults to Show; set to Hide to remove it.
 
 = 3.5 =
 

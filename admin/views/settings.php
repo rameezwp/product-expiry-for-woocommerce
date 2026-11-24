@@ -10,6 +10,7 @@ $default = array(
     'orderdetails'  =>  'disable',
     'orderdetailsadmin' => 'disable',
     'show_earliest_variation'    => 'disable',
+    'menu_badge'                 => 'enable',
     'expired_date_display'       => 'show',
     'expired_date_custom_text'   => '',
     'expired_badge_text'         => '',
@@ -156,6 +157,16 @@ $render_hook_picker = function( $field_name, $current, $hooks, $is_custom, $targ
             <p class="woope-card-desc"><?php esc_html_e( 'What shoppers see after a product passes its expiry date, including the optional “Expired” badge used by the Mark as Expired action.', 'product-expiry-for-woocommerce' ); ?></p>
 
             <table class="form-table" role="presentation">
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Admin Menu Badge', 'product-expiry-for-woocommerce' ); ?></th>
+                    <td>
+                        <select name="menu_badge">
+                            <option value="enable"  <?php selected( $savedSettings['menu_badge'], 'enable' ); ?>><?php esc_html_e( 'Show', 'product-expiry-for-woocommerce' ); ?></option>
+                            <option value="disable" <?php selected( $savedSettings['menu_badge'], 'disable' ); ?>><?php esc_html_e( 'Hide', 'product-expiry-for-woocommerce' ); ?></option>
+                        </select>
+                        <p class="description"><?php esc_html_e( 'Show the red count bubble on the “Product Expiry” admin menu indicating how many products are currently expired. Set to Hide to remove it.', 'product-expiry-for-woocommerce' ); ?></p>
+                    </td>
+                </tr>
                 <tr>
                     <th scope="row"><?php esc_html_e( 'After Expiry, Show Date As', 'product-expiry-for-woocommerce' ); ?></th>
                     <td>

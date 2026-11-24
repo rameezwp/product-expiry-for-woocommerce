@@ -47,11 +47,15 @@ class Admin {
 
         // Append a count bubble (like plugin-update badges) when products are
         // currently expired, so staff notice without opening the list.
+        // Opt-out via the "Admin menu badge" setting (defaults to enabled).
         $menu_title = __( 'Product Expiry', 'product-expiry-for-woocommerce' );
-        $expired    = Dashboard_Widget::expired_count();
-        if ( $expired > 0 ) {
-            $menu_title .= ' <span class="awaiting-mod"><span class="pending-count">'
-                . esc_html( number_format_i18n( $expired ) ) . '</span></span>';
+
+        if ( Plugin::instance()->settings->get( 'menu_badge' ) !== 'disable' ) {
+            $expired = Dashboard_Widget::expired_count();
+            if ( $expired > 0 ) {
+                $menu_title .= ' <span class="awaiting-mod"><span class="pending-count">'
+                    . esc_html( number_format_i18n( $expired ) ) . '</span></span>';
+            }
         }
 
         // Dedicated top-level "Product Expiry" menu. Visible to shop managers
@@ -141,6 +145,7 @@ class Admin {
             'orderdetailsadmin'  => sanitize_text_field( $_POST['orderdetailsadmin'] ?? '' ),
             'markup'             => wp_kses_post( $_POST['markup'] ?? '' ),
             'show_earliest_variation' => sanitize_text_field( $_POST['show_earliest_variation'] ?? 'disable' ),
+            'menu_badge' => sanitize_text_field( $_POST['menu_badge'] ?? 'enable' ),
             'expired_date_display' => sanitize_text_field( $_POST['expired_date_display'] ?? 'show' ),
             'expired_date_custom_text' => sanitize_text_field( $_POST['expired_date_custom_text'] ?? '' ),
             'expired_badge_text' => sanitize_text_field( $_POST['expired_badge_text'] ?? '' ),
