@@ -18,6 +18,7 @@ class Settings {
                 'orderdetailsadmin'      => 'disable',
                 'markup'                 => __( 'Expiry Date: %date%', 'product-expiry-for-woocommerce' ),
                 'show_earliest_variation'=> 'disable',
+                'menu_badge'             => 'enable',
                 'expired_date_display'      => 'show',
                 'expired_date_custom_text'  => '',
                 'expired_badge_text'     => '',
